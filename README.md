@@ -11,8 +11,8 @@ Clone of a popular food delivery app, Zomato.
 
 <br/><br/>
 
-![GitHub last commit](https://img.shields.io/github/last-commit/AbhilashTUofficial/React-Native-programming?color=blue&label=Last%20Commit%3A&style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbhilashTUofficial/React-Native-programming?color=blue&label=Repo%20Size%3A&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/AbhilashTUofficial/Zomato-Clone-React-Native?color=blue&label=Last%20Commit%3A&style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/AbhilashTUofficial/Zomato-Clone-React-Native?color=blue&label=Repo%20Size%3A&style=for-the-badge)
 
 ## Screenshots
 
