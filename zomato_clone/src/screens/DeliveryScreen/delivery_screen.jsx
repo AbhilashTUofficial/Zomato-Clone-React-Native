@@ -12,6 +12,7 @@ import { commonStyles } from '../common_styles';
 import HorizontalScrollView from '../../Components/HorizontalScrollView';
 import { BiryaniList, RecommendedList } from '../../model/ResturantsList';
 
+
 const DeliveryScreen = (props) => {
 
     // ? Array of componets
@@ -48,6 +49,7 @@ const DeliveryScreen = (props) => {
     ];
 
     const [refreshing, setRefreshing] = useState(false);
+
 
     return (
         <Wrapper>

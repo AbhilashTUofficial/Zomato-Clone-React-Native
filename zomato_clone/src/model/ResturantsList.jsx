@@ -22,37 +22,42 @@ export const Restaurants = [
             {
                 title: "Recommended",
                 items: [{
-                    itemTitle: "Chicken Burger Combo",
+                    itemTitle: 'Normal Burger',
                     bestseller: true,
                     itemImg: require('../assets/food_items/biryani_item.png'),
                     veg: false,
-                    itemPrice: "₹ 250",
-                    itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
+                    itemPrice: '₹ 250',
+                    itemDescription:
+                        'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
+                    faved: true,
+                    addedToCart: 0,
                 },
                 {
-                    itemTitle: "Vegitable Burger",
+                    itemTitle: 'Vegitable Burger',
                     bestseller: true,
                     itemImg: require('../assets/food_items/biryani_item.png'),
                     veg: true,
-                    itemPrice: "₹ 250",
-                    itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
-                }
+                    itemPrice: '₹ 250',
+                    itemDescription:
+                        'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
+                    faved: false,
+                    addedToCart: 0,
+                },
                 ]
             },
             {
                 title: "Special",
                 items: [{
-                    itemTitle: "Chicken Burger Combo",
+                    itemTitle: 'Chicken Burger Combo',
                     bestseller: false,
                     itemImg: require('../assets/food_items/biryani_item.png'),
                     veg: false,
-                    itemPrice: "₹ 250",
-                    itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
-
-                }]
+                    itemPrice: '₹ 250',
+                    itemDescription:
+                        'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
+                    faved: false,
+                    addedToCart: 0,
+                },]
             }
         ],
 

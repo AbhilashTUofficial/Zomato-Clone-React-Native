@@ -6,6 +6,8 @@ import TabController from './src/screens/tab_controller';
 import RestaurantViewScreen from './src/screens/restaurant_view_screen';
 import AuthScreen from './src/screens/AuthScreen/auth_screen';
 import OTPVerifyScreen from './src/screens/OtpVerifyScreen/otp_verify_screen';
+import { Provider } from 'react-redux';
+import { data } from './src/redux/dataBindling';
 // import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();

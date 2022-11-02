@@ -2,7 +2,8 @@ import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react
 import React, { useEffect, useState } from 'react';
 import { darkGrey, lightGrey, primary, secondary } from '../constants';
 import Divider from 'react-native-divider';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem, favItem } from '../redux/actions/itemActions';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
@@ -10,14 +11,24 @@ import Divider from 'react-native-divider';
 
 const CatergoryExpandable = (props) => {
 
+    const categories = useSelector(obj => obj.items);
+    // console.log(categories);
+
+
     return (
         <View style={CatExpand.cont}>
             {
-                props.categories.map((category) => {
+
+                categories.map((category) => {
                     return (
                         <ItemView category={category} />
                     );
                 })
+                // props.categories.map((category) => {
+                //     return (
+                //         <ItemView category={category} />
+                //     );
+                // })
             }
         </View>
     );
@@ -48,13 +59,13 @@ const ItemView = (props) => {
             </TouchableOpacity>
 
             <ExpandableView expanded={isExpanded}
-                items={props.category.items} />
+                items={props.category.items} category={title} />
         </>
     );
 };
 
 
-const ExpandableView = ({ expanded = false, items }) => {
+const ExpandableView = ({ expanded = false, items, category }) => {
 
     const [height] = useState(new Animated.Value(0));
     const vegIcon = require('../assets/icons/vegicon.png');
@@ -68,7 +79,6 @@ const ExpandableView = ({ expanded = false, items }) => {
         }).start();
     }, [expanded, height]);
     return (
-
         <Animated.View
             style={CatExpand.expTile}>
             {
@@ -76,11 +86,9 @@ const ExpandableView = ({ expanded = false, items }) => {
                 //! the category ExpandableView
                 !expanded ?
                     items.map((i) => {
-
                         return (
-
                             <>
-                                <View style={CatExpand.expView}>
+                                <View style={CatExpand.expView} key={items.indexOf(i)}>
 
                                     <View style={CatExpand.expLeft}>
 
@@ -107,7 +115,7 @@ const ExpandableView = ({ expanded = false, items }) => {
                                             {i.itemDescription}
                                         </Text>
 
-                                        <FavBtn />
+                                        <FavBtn itemName={i.itemTitle} category={category} isFaved={i.faved} />
 
                                     </View>
 
@@ -115,7 +123,7 @@ const ExpandableView = ({ expanded = false, items }) => {
 
                                         <Image source={i.itemImg} style={CatExpand.expItemImg} />
 
-                                        <AddBtn />
+                                        <AddBtn itemName={i.itemTitle} category={category} itemCount={i.addedToCart} />
 
                                     </View>
                                 </View>
@@ -136,22 +144,26 @@ const ExpandableView = ({ expanded = false, items }) => {
     );
 };
 
-const FavBtn = () => {
+const FavBtn = ({ itemName, category, isFaved }) => {
 
     //? Icons
     const favIcon = require('../assets/icons/heart_active.png');
     const notFavIcon = require('../assets/icons/heart_inactive.png');
-    const [faved, setFav] = useState(false);
 
+    const dispatch = useDispatch();
+
+    const favItemHandler = (itemName, category) => {
+        dispatch(favItem(itemName, category));
+    };
     //! Dont put hooks inside loops
     //! It will create multiple hooks states, and cause trouble while 
     //! returning it. (Uncaught Error: Rendered fewer hooks than expected.)
 
     return (
         <TouchableOpacity activeOpacity={0.6} style={CatExpand.favBtn}
-            onPress={() => { setFav(!faved); }} >
+            onPress={() => favItemHandler(itemName, category)} >
 
-            <Image source={faved ? favIcon : notFavIcon} style={CatExpand.favIcon} />
+            <Image source={isFaved ? favIcon : notFavIcon} style={CatExpand.favIcon} />
 
         </TouchableOpacity>
     );
@@ -159,20 +171,21 @@ const FavBtn = () => {
 
 
 
-const AddBtn = () => {
+const AddBtn = ({ itemName, category, itemCount }) => {
+    const dispatch = useDispatch();
 
-    const [itemCount, setCount] = useState(0);
-    const addHandler = () => {
-        setCount(itemCount + 1);
+    const addItemHandler = (itemName, categroy) => {
+        dispatch(addItem(itemName, categroy));
     };
-    const subHandler = () => {
-        setCount(itemCount - 1);
+
+    const removeItemHandler = i => {
+        dispatch(removeItem(itemName, category));
     };
 
     return (
         itemCount == 0 ?
             <TouchableOpacity activeOpacity={1}
-                onPress={addHandler}
+                onPress={() => addItemHandler(itemName, category)}
                 style={CatExpand.addBtn0}>
                 <Text style={{
                     alignSelf: "center",
@@ -193,7 +206,7 @@ const AddBtn = () => {
             </TouchableOpacity>
             : <View style={CatExpand.addBtn}>
                 <TouchableOpacity style={CatExpand.iBtn}
-                    onPress={subHandler}>
+                    onPress={() => removeItemHandler(itemName, category)}>
                     <Text style={{
                         alignSelf: "center",
                         fontWeight: '"400',
@@ -210,7 +223,7 @@ const AddBtn = () => {
                 }}>{itemCount}</Text>
 
                 <TouchableOpacity style={CatExpand.iBtn}
-                    onPress={addHandler}>
+                    onPress={() => addItemHandler(itemName, category)}>
                     <Text style={{
                         alignSelf: "center",
                         fontWeight: '"400',

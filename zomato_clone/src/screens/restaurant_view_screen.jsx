@@ -8,6 +8,9 @@ import VegNonVeg from '../Components/VegNonVegTag';
 import CatergoryExpandable from '../Components/CategoryExpandable';
 import { useRoute } from '@react-navigation/native';
 import BrouseMenu from '../Components/BrouseMenu';
+import { Provider } from 'react-redux';
+import { data } from '../redux/dataBindling';
+
 
 //? Restaurant Screen
 
@@ -30,33 +33,44 @@ function RestaurantViewScreen({ navigation }) {
     const categories = route.params.categories;
     const restaurantName = route.params.storeName;
 
+    categories.map((category) => {
+        const items = category.items;
+        items.map((item) => {
+            console.log(item);
+        });
+    });
+
     return (
-        <Wrapper >
-            <StatusBar translucent backgroundColor="transparent" />
+        <Provider store={data}>
 
-            <View style={RestViewScrStyle.cont}>
+            <Wrapper >
 
-                <ScrollView stickyHeaderIndices={[0]}
+                <StatusBar translucent backgroundColor="transparent" />
 
-                    showsVerticalScrollIndicator={false}>
+                <View style={RestViewScrStyle.cont}>
 
-                    <Header goBackHandler={() => navigation.goBack()} name={restaurantName} />
+                    <ScrollView stickyHeaderIndices={[0]}
 
-                    <RestaurantDetails restaurant={resturantDetails} />
+                        showsVerticalScrollIndicator={false}>
 
-                    {categories.length == 0 ? null : <VegNonVeg />}
+                        <Header goBackHandler={() => navigation.goBack()} name={restaurantName} />
 
-                    <CatergoryExpandable categories={categories} />
+                        <RestaurantDetails restaurant={resturantDetails} />
 
-                    <HealthGuide />
+                        {categories.length == 0 ? null : <VegNonVeg />}
 
-                </ScrollView>
+                        <CatergoryExpandable categories={categories} />
 
-                <BottomPops categories={categories} />
+                        <HealthGuide />
 
-            </View>
+                    </ScrollView>
 
-        </Wrapper>
+                    <BottomPops categories={categories} />
+
+                </View>
+
+            </Wrapper>
+        </Provider>
     );
 };
 
