@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { darkGrey, lightGrey, primary, secondary } from '../constants';
 import Divider from 'react-native-divider';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem, favItem } from '../redux/actions/itemActions';
+import { addItem, removeItem, favItem, setData } from '../redux/actions/itemActions';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
 
 
 const CatergoryExpandable = (props) => {
+
+
+
+    _setData(props.restaurantName);
 
     const categories = useSelector(obj => obj.items);
     // console.log(categories);
@@ -35,6 +39,14 @@ const CatergoryExpandable = (props) => {
 };
 
 export default CatergoryExpandable;
+
+
+function _setData(restaurantName) {
+    const dispatch = useDispatch();
+
+    dispatch(setData(restaurantName));
+
+}
 
 const ItemView = (props) => {
 
@@ -123,7 +135,7 @@ const ExpandableView = ({ expanded = false, items, category }) => {
 
                                         <Image source={i.itemImg} style={CatExpand.expItemImg} />
 
-                                        <AddBtn itemName={i.itemTitle} category={category} itemCount={i.addedToCart} />
+                                        <AddBtn itemName={i.itemTitle} category={category} />
 
                                     </View>
                                 </View>
@@ -171,21 +183,28 @@ const FavBtn = ({ itemName, category, isFaved }) => {
 
 
 
-const AddBtn = ({ itemName, category, itemCount }) => {
+const AddBtn = ({ itemName, category }) => {
+    const categories = useSelector(obj => obj.items);
+
     const dispatch = useDispatch();
 
-    const addItemHandler = (itemName, categroy) => {
-        dispatch(addItem(itemName, categroy));
+    const addItemHandler = () => {
+        console.log(categories);
+
+        dispatch(addItem(itemName, category));
+
     };
 
-    const removeItemHandler = i => {
+    const removeItemHandler = () => {
         dispatch(removeItem(itemName, category));
     };
+    const [itemCount, setItemCount] = useState(0);
+
 
     return (
         itemCount == 0 ?
             <TouchableOpacity activeOpacity={1}
-                onPress={() => addItemHandler(itemName, category)}
+                onPress={addItemHandler}
                 style={CatExpand.addBtn0}>
                 <Text style={{
                     alignSelf: "center",
@@ -206,7 +225,7 @@ const AddBtn = ({ itemName, category, itemCount }) => {
             </TouchableOpacity>
             : <View style={CatExpand.addBtn}>
                 <TouchableOpacity style={CatExpand.iBtn}
-                    onPress={() => removeItemHandler(itemName, category)}>
+                    onPress={removeItemHandler}>
                     <Text style={{
                         alignSelf: "center",
                         fontWeight: '"400',
@@ -223,7 +242,7 @@ const AddBtn = ({ itemName, category, itemCount }) => {
                 }}>{itemCount}</Text>
 
                 <TouchableOpacity style={CatExpand.iBtn}
-                    onPress={() => addItemHandler(itemName, category)}>
+                    onPress={addItemHandler}>
                     <Text style={{
                         alignSelf: "center",
                         fontWeight: '"400',

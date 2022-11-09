@@ -1,5 +1,4 @@
 
-
 // Recommended Restaurant ID
 export const RecommendedList = [1, 2, 3, 4];
 
@@ -83,7 +82,7 @@ export const Restaurants = [
                     veg: false,
                     itemPrice: "₹ 250",
                     itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
+                    addedToCart: 0,
                 },
                 {
                     itemTitle: "Vegitable Pizza",
@@ -101,6 +100,7 @@ export const Restaurants = [
                     veg: false,
                     itemPrice: "₹ 250",
                     itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
+                    addedToCart: 0,
 
                 }
                 ]
@@ -114,7 +114,7 @@ export const Restaurants = [
                     veg: false,
                     itemPrice: "₹ 250",
                     itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
+                    addedToCart: 0,
 
                 }]
             },
@@ -127,7 +127,7 @@ export const Restaurants = [
                     veg: false,
                     itemPrice: "₹ 250",
                     itemDescription: "Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]",
-
+                    addedToCart: 0,
 
                 }]
             }

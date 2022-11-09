@@ -8,8 +8,8 @@ import VegNonVeg from '../Components/VegNonVegTag';
 import CatergoryExpandable from '../Components/CategoryExpandable';
 import { useRoute } from '@react-navigation/native';
 import BrouseMenu from '../Components/BrouseMenu';
-import { Provider } from 'react-redux';
-import { data } from '../redux/dataBindling';
+import { Provider, useDispatch } from 'react-redux';
+
 
 
 //? Restaurant Screen
@@ -33,48 +33,41 @@ function RestaurantViewScreen({ navigation }) {
     const categories = route.params.categories;
     const restaurantName = route.params.storeName;
 
-    categories.map((category) => {
-        const items = category.items;
-        items.map((item) => {
-            console.log(item);
-        });
-    });
 
     return (
-        <Provider store={data}>
 
-            <Wrapper >
+        <Wrapper >
 
-                <StatusBar translucent backgroundColor="transparent" />
+            <StatusBar translucent backgroundColor="transparent" />
 
-                <View style={RestViewScrStyle.cont}>
+            <View style={RestViewScrStyle.cont}>
 
-                    <ScrollView stickyHeaderIndices={[0]}
+                <ScrollView stickyHeaderIndices={[0]}
 
-                        showsVerticalScrollIndicator={false}>
+                    showsVerticalScrollIndicator={false}>
 
-                        <Header goBackHandler={() => navigation.goBack()} name={restaurantName} />
+                    <Header goBackHandler={() => navigation.goBack()} name={restaurantName} />
 
-                        <RestaurantDetails restaurant={resturantDetails} />
+                    <RestaurantDetails restaurant={resturantDetails} />
 
-                        {categories.length == 0 ? null : <VegNonVeg />}
+                    {categories.length == 0 ? null : <VegNonVeg />}
 
-                        <CatergoryExpandable categories={categories} />
+                    <CatergoryExpandable categories={categories} restaurantName={restaurantName} />
 
-                        <HealthGuide />
+                    <HealthGuide />
 
-                    </ScrollView>
+                </ScrollView>
 
-                    <BottomPops categories={categories} />
+                <BottomPops categories={categories} />
 
-                </View>
+            </View>
 
-            </Wrapper>
-        </Provider>
+        </Wrapper>
     );
 };
 
 export default RestaurantViewScreen;
+
 
 const BottomPops = (props) => {
     return (
