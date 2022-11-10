@@ -7,14 +7,16 @@ import RestaurantViewScreen from './src/screens/restaurant_view_screen';
 import AuthScreen from './src/screens/AuthScreen/auth_screen';
 import OTPVerifyScreen from './src/screens/OtpVerifyScreen/otp_verify_screen';
 import { Provider } from 'react-redux';
-import { data } from './src/redux/dataBindling';
+import { store } from './src/redux/store';
 // import SplashScreen from 'react-native-splash-screen';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <>
+
+    <Provider store={store}>
+
       {/* StatusBar translucent make it, that the UI goes under status bar */}
       <StatusBar translucent backgroundColor="transparent" />
 
@@ -38,7 +40,8 @@ function App() {
 
       </NavigationContainer>
 
-    </>
+    </Provider>
+
   );
 }
 

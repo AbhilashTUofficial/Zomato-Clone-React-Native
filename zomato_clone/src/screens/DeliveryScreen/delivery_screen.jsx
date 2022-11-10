@@ -10,46 +10,10 @@ import RestaurantsScrollView from '../../Components/RestaurantsScrollView';
 import SafeArea from '../../Components/SafeArea';
 import { commonStyles } from '../common_styles';
 import HorizontalScrollView from '../../Components/HorizontalScrollView';
-import { BiryaniList, RecommendedList } from '../../model/ResturantsList';
+import { BiryaniList } from '../../model/ResturantsList';
 
-
-const DeliveryScreen = (props) => {
-
-    // ? Array of componets
-    components = [
-
-        <Header />,
-
-        <StickyHeader />,
-
-        <OfferBanner source={require("../../assets/img/foodbanner1.jpg")} />,
-
-        <Heading label={"Check this out!"} />,
-
-        <OfferBanner source={require("../../assets/img/foodbanner2.jpg")} />,
-
-        <Heading label={"Eat what makes you happy"} />,
-
-        <FoodTypesScrollView />,
-
-        <Heading label={"Recommended for you"} />,
-
-        <HorizontalScrollView list={RecommendedList} />,
-
-        <Heading label={"Delicious biryani"} />,
-
-        <HorizontalScrollView list={BiryaniList} />,
-
-        <Heading label={"All restaurants around you"} />,
-
-        <RestaurantsScrollView />,
-
-        <SafeArea />
-
-    ];
-
+const DeliveryScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
-
 
     return (
         <Wrapper>
@@ -59,19 +23,36 @@ const DeliveryScreen = (props) => {
                 <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}
                     refreshControl={<RefreshControl refreshing={refreshing} />}>
 
-                    {
-                        //! Loop through the componets array and return each only 
-                        //! in order
 
-                        //TODO: Convert this to a flatlist
-                        components.map((component) => {
-                            return (
-                                <View key={""}>
-                                    {component}
-                                </View>
-                            );
-                        })
-                    }
+                    <View >
+                        <Header />
+
+                        <StickyHeader />
+
+                        <OfferBanner source={require("../../assets/img/foodbanner1.jpg")} />
+
+                        <Heading label={"Check this out!"} />
+
+                        <OfferBanner source={require("../../assets/img/foodbanner2.jpg")} />
+
+                        <Heading label={"Eat what makes you happy"} />
+
+                        <FoodTypesScrollView />
+
+                        <Heading label={"Recommended for you"} />
+
+                        <HorizontalScrollView cat={"recommended"} />
+
+                        <Heading label={"Delicious biryani"} />
+
+                        <HorizontalScrollView cat={"biryani"} />
+
+                        <Heading label={"All restaurants around you"} />
+
+                        <RestaurantsScrollView />
+
+                        <SafeArea />
+                    </View>
 
                 </ScrollView>
 
@@ -80,5 +61,7 @@ const DeliveryScreen = (props) => {
         </Wrapper>
     );
 };
+
+
 
 export default DeliveryScreen;

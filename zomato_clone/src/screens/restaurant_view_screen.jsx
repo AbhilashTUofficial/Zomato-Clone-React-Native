@@ -8,7 +8,6 @@ import VegNonVeg from '../Components/VegNonVegTag';
 import CatergoryExpandable from '../Components/CategoryExpandable';
 import { useRoute } from '@react-navigation/native';
 import BrouseMenu from '../Components/BrouseMenu';
-import { Provider, useDispatch } from 'react-redux';
 
 
 
