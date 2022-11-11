@@ -7,7 +7,8 @@ import Heading from './Heading';
 
 //? A horinontal scroll view which can display restaurants 
 //? as a elevated card.
-const HorizontalScrollView = ({ recommendedList, biryaniList }) => {
+const HorizontalScrollView = ({ recommendedList, biryaniList, newData }) => {
+    // console.log(newData);
     return (
         <View
             style={{
@@ -24,11 +25,10 @@ const HorizontalScrollView = ({ recommendedList, biryaniList }) => {
                 {
 
                     recommendedList.map((i) => {
-                        console.log(i);
 
                         return (
                             <ElongatedCard
-                                restaurant={i}
+                                restId={i.id}
                                 key={i.id} />
                         );
 
@@ -44,11 +44,10 @@ const HorizontalScrollView = ({ recommendedList, biryaniList }) => {
                 {
 
                     biryaniList.map((i) => {
-                        console.log(i);
 
                         return (
                             <ElongatedCard
-                                restaurant={i}
+                                restId={i.id}
                                 key={i.id} />
                         );
 
@@ -64,6 +63,7 @@ const mapStateToProps = state => {
     return {
         recommendedList: state.data.Recommended,
         biryaniList: state.data.Biryani,
+        newData: state.data.newData,
     };
 };
 

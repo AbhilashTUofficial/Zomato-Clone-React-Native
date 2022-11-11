@@ -6,14 +6,16 @@ import RestaurantDetails from '../Components/RestaurantDetails';
 import Header from '../Components/RestaurantHeader';
 import VegNonVeg from '../Components/VegNonVegTag';
 import CatergoryExpandable from '../Components/CategoryExpandable';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import BrouseMenu from '../Components/BrouseMenu';
 
 
 
 //? Restaurant Screen
 
-function RestaurantViewScreen({ navigation }) {
+const RestaurantViewScreen = () => {
+
+    const navigation = useNavigation();
 
     const route = useRoute();
 

@@ -1,5 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { secondary } from '../screens/common_styles';
@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import RattingTag from './RattingTag';
 import { LikeRestaurant } from '../redux/Restaurant/restaurant-actions';
 
-const ElongatedCard = ({ restaurant, LikeRestaurant }) => {
+const ElongatedCard = ({ restId, restaurants, LikeRestaurant }) => {
 
     //? Icons
     const favIcon = require('../assets/icons/heart_active.png');
@@ -16,11 +16,20 @@ const ElongatedCard = ({ restaurant, LikeRestaurant }) => {
     const rupeeIcon = require('../assets/icons/rupeeicon.png');
 
     const navigation = useNavigation();
+
+    var restaurant = [];
+
+    restaurants.map((rest) => {
+        if (rest.id === restId) {
+            restaurant = rest;
+        }
+    });
+
     const [faved, setFav] = useState(restaurant.faved);
     const id = restaurant.id;
     const img = restaurant.img;
     const resName = restaurant.storeName;
-    const ratting = restaurant.ratting;
+    const ratting = " restaurant.ratting";
     const travelTime = restaurant.travelTime;
     const distance = restaurant.distance;
     const cost = restaurant.cost;
@@ -28,12 +37,14 @@ const ElongatedCard = ({ restaurant, LikeRestaurant }) => {
 
     const likeHandler = () => {
         LikeRestaurant(id);
+        setFav(!faved);
     };
+
 
     return (
 
         <TouchableOpacity activeOpacity={0.8} style={ElongatedCardStyles.card}
-        // onPress={() => navigation.navigate("restaurantscreen", props.restaurant)}
+            onPress={() => navigation.navigate("restaurantscreen", restaurant)}
         >
 
             {/*//? Header part of the componet */}
@@ -107,8 +118,15 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
+const mapStateToProps = state => {
+    return {
+        restaurants: state.data.Restaurants,
+    };
+};
+
+
 //! pass in null if you not using mapStateToProps,
-export default connect(null, mapDispatchToProps)(ElongatedCard);
+export default connect(mapStateToProps, mapDispatchToProps)(ElongatedCard);
 
 const ElongatedCardStyles = StyleSheet.create({
     card: {

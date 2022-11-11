@@ -63,13 +63,15 @@ const CategoryTabs = () => {
 
         <Tab label={"More"} trailing={true} />,
     ];
+
     return (
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {
-                components.map((component) => {
+                components.map((component, i = 0) => {
+                    i++;
                     return (
-                        <View key={""}>
+                        <View key={i}>
                             {component}
                         </View>
                     );

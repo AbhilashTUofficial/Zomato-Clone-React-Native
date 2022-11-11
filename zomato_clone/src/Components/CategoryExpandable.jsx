@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //? currently available on the reestaurant
 
 
-const CatergoryExpandable = (props) => {
+const CatergoryExpandable = ({ categories }) => {
 
 
 

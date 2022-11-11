@@ -458,27 +458,25 @@ const INITIAL_STATE = {
       ],
     },
   ],
+  newData: [],
 };
 
 const restaurantReducer = (state = INITIAL_STATE, action) => {
-  console.log('restaurant reducer called');
-
   switch (action.type) {
     case 'ADD_TO_CART':
-      console.log('add to cart');
       return {
         ...state,
       };
 
     case 'LIKE_RESTAURANT':
-      console.log('reducer called');
+      state.Recommended.map(restaurant => {
+        if (restaurant.id === action.payload.id) {
+          restaurant.faved = !restaurant.faved;
+        }
+      });
+
       return {
         ...state,
-        // Recommended: state.Recommended.map(restaurant => {
-        //   if (restaurant.id === action.payload.id) {
-        //     restaurant.faved = !restaurant.faved;
-        //   }
-        // }),
       };
 
     default:
