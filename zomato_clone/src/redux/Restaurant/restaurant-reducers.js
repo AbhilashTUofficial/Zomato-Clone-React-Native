@@ -1,6 +1,6 @@
 import {Restaurants} from '../../model/ResturantsList';
 
-export const INITIAL_STATE = {
+const INITIAL_STATE = {
   Restaurants: [
     {
       id: 1,
@@ -12,6 +12,8 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '4.6',
+      faved: false,
+
       categories: [
         {
           title: 'Recommended',
@@ -68,6 +70,8 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '3.8',
+      faved: false,
+
       categories: [
         {
           title: 'Recommended',
@@ -146,6 +150,7 @@ export const INITIAL_STATE = {
       cost: '150 for one',
       ratting: '4.0',
       categories: [],
+      faved: false,
     },
     {
       id: 4,
@@ -158,6 +163,7 @@ export const INITIAL_STATE = {
       cost: '150 for one',
       ratting: '4.2',
       categories: [],
+      faved: false,
     },
     {
       id: 5,
@@ -170,6 +176,7 @@ export const INITIAL_STATE = {
       cost: '150 for one',
       ratting: '2.6',
       categories: [],
+      faved: false,
     },
   ],
 
@@ -184,6 +191,7 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '4.6',
+      faved: true,
       categories: [
         {
           title: 'Recommended',
@@ -240,6 +248,8 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '3.8',
+      faved: true,
+
       categories: [
         {
           title: 'Recommended',
@@ -320,6 +330,8 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '4.6',
+      faved: true,
+
       categories: [
         {
           title: 'Recommended',
@@ -376,6 +388,8 @@ export const INITIAL_STATE = {
       distance: '2 km',
       cost: '150 for one',
       ratting: '3.8',
+      faved: false,
+
       categories: [
         {
           title: 'Recommended',
@@ -447,10 +461,24 @@ export const INITIAL_STATE = {
 };
 
 const restaurantReducer = (state = INITIAL_STATE, action) => {
+  console.log('restaurant reducer called');
+
   switch (action.type) {
     case 'ADD_TO_CART':
+      console.log('add to cart');
       return {
         ...state,
+      };
+
+    case 'LIKE_RESTAURANT':
+      console.log('reducer called');
+      return {
+        ...state,
+        // Recommended: state.Recommended.map(restaurant => {
+        //   if (restaurant.id === action.payload.id) {
+        //     restaurant.faved = !restaurant.faved;
+        //   }
+        // }),
       };
 
     default:

@@ -10,7 +10,6 @@ import RestaurantsScrollView from '../../Components/RestaurantsScrollView';
 import SafeArea from '../../Components/SafeArea';
 import { commonStyles } from '../common_styles';
 import HorizontalScrollView from '../../Components/HorizontalScrollView';
-import { BiryaniList } from '../../model/ResturantsList';
 
 const DeliveryScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
@@ -39,13 +38,7 @@ const DeliveryScreen = () => {
 
                         <FoodTypesScrollView />
 
-                        <Heading label={"Recommended for you"} />
-
-                        <HorizontalScrollView cat={"recommended"} />
-
-                        <Heading label={"Delicious biryani"} />
-
-                        <HorizontalScrollView cat={"biryani"} />
+                        <HorizontalScrollView />
 
                         <Heading label={"All restaurants around you"} />
 

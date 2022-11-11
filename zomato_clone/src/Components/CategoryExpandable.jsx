@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { darkGrey, lightGrey, primary, secondary } from '../constants';
 import Divider from 'react-native-divider';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, removeItem, favItem, setData } from '../redux/actions/itemActions';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
@@ -11,12 +10,6 @@ import { addItem, removeItem, favItem, setData } from '../redux/actions/itemActi
 
 const CatergoryExpandable = (props) => {
 
-
-
-    _setData(props.restaurantName);
-
-    const categories = useSelector(obj => obj.items);
-    // console.log(categories);
 
 
     return (
@@ -41,12 +34,7 @@ const CatergoryExpandable = (props) => {
 export default CatergoryExpandable;
 
 
-function _setData(restaurantName) {
-    const dispatch = useDispatch();
 
-    dispatch(setData(restaurantName));
-
-}
 
 const ItemView = (props) => {
 
