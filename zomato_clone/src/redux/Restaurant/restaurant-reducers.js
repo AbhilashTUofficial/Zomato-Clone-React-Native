@@ -479,6 +479,25 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
         ...state,
       };
 
+    case 'LIKE_ITEM':
+      console.log('reducer called');
+      state.Restaurants.map(restaurant => {
+        if (restaurant.id === action.payload.id) {
+          restaurant.categories.map(category => {
+            if (category.title === action.payload.category) {
+              category.items.map(item => {
+                if (item.itemTitle === action.payload.itemName) {
+                  item.faved = !item.faved;
+                }
+              });
+            }
+          });
+        }
+      });
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }

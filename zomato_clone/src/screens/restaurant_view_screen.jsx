@@ -47,13 +47,13 @@ const RestaurantViewScreen = () => {
 
                     showsVerticalScrollIndicator={false}>
 
-                    <Header goBackHandler={() => navigation.goBack()} name={restaurantName} />
+                    <Header goBackHandler={() => navigation.navigate("tabcontroller")} name={restaurantName} />
 
                     <RestaurantDetails restaurant={resturantDetails} />
 
                     {categories.length == 0 ? null : <VegNonVeg />}
 
-                    <CatergoryExpandable categories={categories} restaurantName={restaurantName} />
+                    <CatergoryExpandable restId={resturantDetails.id} />
 
                     <HealthGuide />
 

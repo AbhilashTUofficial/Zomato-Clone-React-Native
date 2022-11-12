@@ -8,12 +8,23 @@ export const addToCart = (shopId, itemName) => {
   };
 };
 
-export const LikeRestaurant = restId => {
-  console.log('action called');
+export const likeRestaurant = restId => {
   return {
     type: 'LIKE_RESTAURANT',
     payload: {
       id: restId,
+    },
+  };
+};
+
+export const likeItem = (id, itemName, category) => {
+  console.log('action called');
+  return {
+    type: 'LIKE_ITEM',
+    payload: {
+      id: id,
+      itemName: itemName,
+      category: category,
     },
   };
 };

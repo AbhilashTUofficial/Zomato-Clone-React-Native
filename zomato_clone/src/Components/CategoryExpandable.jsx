@@ -3,69 +3,77 @@ import React, { useEffect, useState } from 'react';
 import { darkGrey, lightGrey, primary, secondary } from '../constants';
 import Divider from 'react-native-divider';
 import { useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
+import { likeItem } from '../redux/Restaurant/restaurant-actions';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
 
 
-const CatergoryExpandable = ({ categories }) => {
+const CatergoryExpandable = ({ likeItem, restId, restaurants }) => {
 
+    const dropdownIcon1 = require('../assets/icons/dropdown3.png');
+    const dropdownIcon2 = require('../assets/icons/dropdown3.1.png');
 
+    var categories;
+
+    restaurants.map((restaurant) => {
+        if (restaurant.id === restId) {
+            categories = restaurant.categories;
+        }
+    });
 
     return (
         <View style={CatExpand.cont}>
             {
 
                 categories.map((category) => {
+                    const [isExpanded, setIsExpanded] = useState(false);
+                    const title = category.title;
+                    const itemNo = category.items.length;
                     return (
-                        <ItemView category={category} />
+                        <>
+                            <TouchableOpacity activeOpacity={1}
+                                style={CatExpand.tile}
+                                onPress={() => { setIsExpanded(!isExpanded); }}>
+
+                                <Text style={CatExpand.title} >
+                                    {title} ({itemNo})</Text>
+
+                                <Image source={isExpanded ? dropdownIcon1 : dropdownIcon2}
+                                    style={CatExpand.ddIcon} />
+
+                            </TouchableOpacity>
+
+                            <ExpandableView
+                                expanded={isExpanded}
+                                items={category.items}
+                                category={title}
+                                likeHandler={likeItem}
+                                restId={restId} />
+                        </>
                     );
                 })
-                // props.categories.map((category) => {
-                //     return (
-                //         <ItemView category={category} />
-                //     );
-                // })
             }
         </View>
     );
 };
-
-export default CatergoryExpandable;
-
-
-
-
-const ItemView = (props) => {
-
-    const [isExpanded, setIsExpanded] = useState(false);
-    const title = props.category.title;
-    const itemNo = props.category.items.length;
-    const dropdownIcon1 = require('../assets/icons/dropdown3.png');
-    const dropdownIcon2 = require('../assets/icons/dropdown3.1.png');
-
-    return (
-        <>
-            <TouchableOpacity activeOpacity={1}
-                style={CatExpand.tile}
-                onPress={() => { setIsExpanded(!isExpanded); }}>
-
-                <Text style={CatExpand.title} >
-                    {title} ({itemNo})</Text>
-
-                <Image source={isExpanded ? dropdownIcon1 : dropdownIcon2}
-                    style={CatExpand.ddIcon} />
-
-            </TouchableOpacity>
-
-            <ExpandableView expanded={isExpanded}
-                items={props.category.items} category={title} />
-        </>
-    );
+const mapDispatchToProps = dispatch => {
+    return {
+        likeItem: (id, itemName, category) => dispatch(likeItem(id, itemName, category)),
+    };
+};
+const mapStateToProps = state => {
+    return {
+        restaurants: state.data.Restaurants,
+    };
 };
 
+export default connect(mapStateToProps, mapDispatchToProps)(CatergoryExpandable);
 
-const ExpandableView = ({ expanded = false, items, category }) => {
+
+
+const ExpandableView = ({ expanded = false, items, category, likeHandler, restId }) => {
 
     const [height] = useState(new Animated.Value(0));
     const vegIcon = require('../assets/icons/vegicon.png');
@@ -85,45 +93,46 @@ const ExpandableView = ({ expanded = false, items, category }) => {
                 //! Loop through items list and return each item onto the 
                 //! the category ExpandableView
                 !expanded ?
-                    items.map((i) => {
+                    items.map((item) => {
+
                         return (
                             <>
-                                <View style={CatExpand.expView} key={items.indexOf(i)}>
+                                <View style={CatExpand.expView} key={items.indexOf(item)}>
 
                                     <View style={CatExpand.expLeft}>
 
                                         <View style={CatExpand.itemTags}>
                                             {
-                                                i.veg ? <Image source={vegIcon} style={CatExpand.icon} /> : <Image source={nonVegIcon} style={CatExpand.icon} />
+                                                item.veg ? <Image source={vegIcon} style={CatExpand.icon} /> : <Image source={nonVegIcon} style={CatExpand.icon} />
                                             }
 
                                             {
-                                                i.bestseller ? <Text style={CatExpand.bestseller}> Bestseller</Text> : null
+                                                item.bestseller ? <Text style={CatExpand.bestseller}> Bestseller</Text> : null
                                             }
 
                                         </View>
 
                                         <Text style={CatExpand.subtitle}>
-                                            {i.itemTitle}
+                                            {item.itemTitle}
                                         </Text>
 
                                         <Text style={CatExpand.subtitle}>
-                                            {i.itemPrice}
+                                            {item.itemPrice}
                                         </Text>
 
                                         <Text style={CatExpand.description}>
-                                            {i.itemDescription}
+                                            {item.itemDescription}
                                         </Text>
 
-                                        <FavBtn itemName={i.itemTitle} category={category} isFaved={i.faved} />
+                                        <FavBtn item={item} category={category} likeHandler={likeHandler} id={restId} />
 
                                     </View>
 
                                     <View style={CatExpand.expRight}>
 
-                                        <Image source={i.itemImg} style={CatExpand.expItemImg} />
+                                        <Image source={item.itemImg} style={CatExpand.expItemImg} />
 
-                                        <AddBtn itemName={i.itemTitle} category={category} />
+                                        <AddBtn itemName={item.itemTitle} category={category} />
 
                                     </View>
                                 </View>
@@ -144,24 +153,29 @@ const ExpandableView = ({ expanded = false, items, category }) => {
     );
 };
 
-const FavBtn = ({ itemName, category, isFaved }) => {
+const FavBtn = ({ item, category, likeHandler, id }) => {
 
     //? Icons
     const favIcon = require('../assets/icons/heart_active.png');
     const notFavIcon = require('../assets/icons/heart_inactive.png');
 
-    const dispatch = useDispatch();
+    const itemName = item.itemTitle;
+    const [isFaved, setFaved] = useState(item.isFaved);
 
-    const favItemHandler = (itemName, category) => {
-        dispatch(favItem(itemName, category));
+    const handler = () => {
+        // likeHandler(id, itemName, category);
+        likeItem(id, itemName, category);
+        setFaved(!isFaved);
     };
+
+
     //! Dont put hooks inside loops
     //! It will create multiple hooks states, and cause trouble while 
     //! returning it. (Uncaught Error: Rendered fewer hooks than expected.)
 
     return (
         <TouchableOpacity activeOpacity={0.6} style={CatExpand.favBtn}
-            onPress={() => favItemHandler(itemName, category)} >
+            onPress={handler} >
 
             <Image source={isFaved ? favIcon : notFavIcon} style={CatExpand.favIcon} />
 
