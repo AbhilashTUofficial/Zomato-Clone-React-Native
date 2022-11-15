@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { Component, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { secondary } from '../constants';
-import RattingTag from './RattingTag';
+import { secondary } from '../../../screens/common_styles';
+import RattingTag from '../../Common/RattingTag';
 
 //? Icons
-const favIcon = require('../assets/icons/heart_active.png');
-const notFavIcon = require('../assets/icons/heart_inactive.png');
+const favIcon = require('../../../assets/icons/heart_active.png');
+const notFavIcon = require('../../../assets/icons/heart_inactive.png');
 
 const RestaurantCard = (props) => {
 

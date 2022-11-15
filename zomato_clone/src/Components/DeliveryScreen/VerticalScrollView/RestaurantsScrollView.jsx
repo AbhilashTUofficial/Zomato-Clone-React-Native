@@ -1,7 +1,7 @@
 import { ScrollView, View } from 'react-native';
 import React, { useState } from 'react';
+import { Restaurants } from '../../../model/ResturantsList';
 import RestaurantCard from './RestaurantCard';
-import { Restaurants } from '../model/ResturantsList';
 
 //? All Restaurants available 
 const RestaurantsScrollView = () => {

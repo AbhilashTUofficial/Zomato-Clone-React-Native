@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import { lightGrey, secondary } from '../constants';
+import { lightGrey, secondary } from '../../constants';
 
 
 //? Veg / NonVeg toggle
@@ -8,9 +8,9 @@ const VegNonVeg = () => {
 
     const [vegSelected, setVeg] = useState(false);
     const [nonVegSelected, setNonVeg] = useState(false);
-    const vegIcon = require('../assets/icons/vegicon.png');
-    const cnlIcon = require('../assets/icons/cancel.png');
-    const nonVegIcon = require('../assets/icons/nonvegicon.png');
+    const vegIcon = require('../../assets/icons/vegicon.png');
+    const cnlIcon = require('../../assets/icons/cancel.png');
+    const nonVegIcon = require('../../assets/icons/nonvegicon.png');
 
     return (
 

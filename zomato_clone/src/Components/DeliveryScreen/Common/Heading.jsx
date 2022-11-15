@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import React from 'react';
-import { secondary } from '../constants';
+import { secondary } from '../../../constants';
 
 
 const Heading = ({ label }) => {

@@ -1,12 +1,12 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { lightGrey, secondary } from '../constants';
+import { lightGrey, secondary } from '../../../constants';
 
 //? Icons
-const locationIcon = require('../assets/icons/location.png');
-const dropdownIcon = require('../assets/icons/dropdown2.png');
-const languageIcon = require('../assets/icons/language.png');
-const profileIcon = require('../assets/icons/profile.png');
+const locationIcon = require('../../../assets/icons/location.png');
+const dropdownIcon = require('../../../assets/icons/dropdown2.png');
+const languageIcon = require('../../../assets/icons/language.png');
+const profileIcon = require('../../../assets/icons/profile.png');
 
 const Header = () => {
     return (

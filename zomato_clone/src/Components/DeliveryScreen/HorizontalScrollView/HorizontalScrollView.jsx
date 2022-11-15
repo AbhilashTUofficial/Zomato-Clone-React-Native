@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import ElongatedCard from './ElongatedCard';
-import Heading from './Heading';
+import Heading from '../Common/Heading';
 
 //? A horinontal scroll view which can display restaurants 
 //? as a elevated card.

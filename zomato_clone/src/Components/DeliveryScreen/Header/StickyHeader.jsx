@@ -1,6 +1,6 @@
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { lightGrey, secondary } from '../constants';
+import { lightGrey, secondary } from '../../../constants';
 
 const StickyHeader = () => {
     return (
@@ -16,8 +16,8 @@ const StickyHeader = () => {
 
 export default StickyHeader;
 
-const searchIcon = require('../assets/icons/search.png');
-const micIcon = require('../assets/icons/mic.png');
+const searchIcon = require('../../../assets/icons/search.png');
+const micIcon = require('../../../assets/icons/mic.png');
 
 //? Search bar
 const SearchBar = () => {
@@ -89,7 +89,7 @@ const Tab = ({ leading, label, trailing }) => {
             style={CategoryTabStyles.tabCont}>
 
             {
-                leading ? <Image source={require('../assets/icons/sort.png')}
+                leading ? <Image source={require('../../../assets/icons/sort.png')}
                     style={CategoryTabStyles.tabIcon} />
                     : null
             }
@@ -99,7 +99,7 @@ const Tab = ({ leading, label, trailing }) => {
             {
                 trailing ?
                     <Image
-                        source={require('../assets/icons/dropdown3.png')}
+                        source={require('../../../assets/icons/dropdown3.png')}
                         style={CategoryTabStyles.tabIcon} /> : null
             }
         </TouchableOpacity>

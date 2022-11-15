@@ -458,10 +458,11 @@ const INITIAL_STATE = {
       ],
     },
   ],
-  newData: [],
+  currentRest: [],
 };
 
 const restaurantReducer = (state = INITIAL_STATE, action) => {
+  console.log(state.currentRest);
   switch (action.type) {
     case 'ADD_TO_CART':
       return {

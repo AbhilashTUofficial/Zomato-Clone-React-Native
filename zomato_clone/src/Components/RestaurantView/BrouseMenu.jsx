@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { secondary } from "../constants";
+import { secondary } from "../../constants";
 
 
 const BrouseMenu = (props) => {
-    const dinningIcon = require("../assets/icons/dinning.png");
-    const cnlIcon = require("../assets/icons/cancel_white.png");
-    const divider = require("../assets/img/fancydivider.png");
+    const dinningIcon = require("../../assets/icons/dinning.png");
+    const cnlIcon = require("../../assets/icons/cancel_white.png");
+    const divider = require("../../assets/img/fancydivider.png");
     const [clicked, setClick] = useState(false);
 
     const clickHandler = () => {

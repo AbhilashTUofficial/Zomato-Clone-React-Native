@@ -1,6 +1,6 @@
 import { Dimensions, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import Wrapper from '../Components/Wrapper';
+import Wrapper from '../Components/Common/Wrapper';
 import { dark, darkGrey, grey, lightGrey, primary, secondary } from '../constants';
 import Divider from 'react-native-divider';
 

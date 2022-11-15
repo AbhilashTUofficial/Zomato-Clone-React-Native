@@ -1,7 +1,7 @@
 import { Image, ImageBackground, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { authStyles, dropdownIcon, flagImg, googleLogo, headerImg, viewmoreIcon, languageIcon } from './auth_styles';
 import { React } from 'react';
-import Wrapper from '../../Components/Wrapper';
+import Wrapper from '../../Components/Common/Wrapper';
 import { darkGrey, grey, lightGrey } from '../../constants';
 import Divider from 'react-native-divider';
 import { commonStyles } from '../common_styles';

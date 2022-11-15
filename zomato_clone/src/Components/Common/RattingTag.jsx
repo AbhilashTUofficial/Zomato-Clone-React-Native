@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View } from "react-native";
-import { lightGrey } from "../constants";
+import { lightGrey } from "../../constants";
 
 
 
@@ -22,7 +22,7 @@ const RattingTag = (props) => {
     ];
     const ratting = props.ratting;
     var rate = props.ratting.substring(0, 1);
-    const rattingIcon = require('../assets/icons/star.png');
+    const rattingIcon = require('../../assets/icons/star.png');
 
 
     return (

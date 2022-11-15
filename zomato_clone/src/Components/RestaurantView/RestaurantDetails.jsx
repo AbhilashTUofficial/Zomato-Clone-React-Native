@@ -1,14 +1,14 @@
 import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { blue, darkGrey, secondary } from '../constants';
-import RattingTag from './RattingTag';
+import { blue, darkGrey, secondary } from '../../constants';
+import RattingTag from '../Common/RattingTag';
 
 
 const RestaurantDetails = (props) => {
 
     //? Data
     const resName = props.restaurant.storeName;
-    const backgroundImg = require('../assets/img/fireworks.jpg');
-    const clockIcon = require('../assets/icons/clockicon.png');
+    const backgroundImg = require('../../assets/img/fireworks.jpg');
+    const clockIcon = require('../../assets/icons/clockicon.png');
     const items = props.restaurant.foodTypes;
     const location = props.restaurant.location;
     const ratting = props.restaurant.ratting;
@@ -71,7 +71,7 @@ export default RestaurantDetails;
 
 const CouponsScrollView = () => {
 
-    const couponImg = require("../assets/img/coupon.png");
+    const couponImg = require("../../assets/img/coupon.png");
 
     return (
         <ScrollView

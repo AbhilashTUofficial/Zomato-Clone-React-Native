@@ -1,10 +1,10 @@
 import { Animated, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { darkGrey, lightGrey, primary, secondary } from '../constants';
+import { darkGrey, lightGrey, primary, secondary } from '../../constants';
 import Divider from 'react-native-divider';
 import { useDispatch, useSelector } from 'react-redux';
 import { connect } from 'react-redux';
-import { likeItem } from '../redux/Restaurant/restaurant-actions';
+import { likeItem } from '../../redux/Restaurant/restaurant-actions';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
@@ -12,8 +12,8 @@ import { likeItem } from '../redux/Restaurant/restaurant-actions';
 
 const CatergoryExpandable = ({ likeItem, restId, restaurants }) => {
 
-    const dropdownIcon1 = require('../assets/icons/dropdown3.png');
-    const dropdownIcon2 = require('../assets/icons/dropdown3.1.png');
+    const dropdownIcon1 = require('../../assets/icons/dropdown3.png');
+    const dropdownIcon2 = require('../../assets/icons/dropdown3.1.png');
 
     var categories;
 
@@ -76,8 +76,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(CatergoryExpandable)
 const ExpandableView = ({ expanded = false, items, category, likeHandler, restId }) => {
 
     const [height] = useState(new Animated.Value(0));
-    const vegIcon = require('../assets/icons/vegicon.png');
-    const nonVegIcon = require('../assets/icons/nonvegicon.png');
+    const vegIcon = require('../../assets/icons/vegicon.png');
+    const nonVegIcon = require('../../assets/icons/nonvegicon.png');
 
     useEffect(() => {
         Animated.timing(height, {
@@ -156,8 +156,8 @@ const ExpandableView = ({ expanded = false, items, category, likeHandler, restId
 const FavBtn = ({ item, category, likeHandler, id }) => {
 
     //? Icons
-    const favIcon = require('../assets/icons/heart_active.png');
-    const notFavIcon = require('../assets/icons/heart_inactive.png');
+    const favIcon = require('../../assets/icons/heart_active.png');
+    const notFavIcon = require('../../assets/icons/heart_inactive.png');
 
     const itemName = item.itemTitle;
     const [isFaved, setFaved] = useState(item.isFaved);

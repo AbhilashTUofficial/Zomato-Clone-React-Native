@@ -1,6 +1,6 @@
 import { Dimensions, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { lightGrey, secondary } from '../constants';
+import { lightGrey, secondary } from '../../../constants';
 
 
 const SafeArea = () => {

@@ -1,4 +1,4 @@
-import { lightGrey, secondary } from '../constants';
+import { lightGrey, secondary } from '../../constants';
 import { View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
 
 
@@ -31,7 +31,7 @@ const Header = ({ goBackHandler, name }) => {
                     onPress={goBackHandler}>
 
                     <Image
-                        source={require('../assets/icons/previous.png')}
+                        source={require('../../assets/icons/previous.png')}
                         style={{
                             height: '100%',
                             width: "100%",
@@ -69,7 +69,7 @@ const Header = ({ goBackHandler, name }) => {
                     }}>
 
                     <Image
-                        source={require('../assets/icons/search.png')}
+                        source={require('../../assets/icons/search.png')}
                         style={{
                             height: '100%',
                             width: "100%",
@@ -97,7 +97,7 @@ const Header = ({ goBackHandler, name }) => {
             // onPress={}
             >
                 <Image
-                    source={require('../assets/icons/viewmore.png')} style={{
+                    source={require('../../assets/icons/viewmore.png')} style={{
                         height: '100%',
                         width: "100%",
                         alignSelf: "center",

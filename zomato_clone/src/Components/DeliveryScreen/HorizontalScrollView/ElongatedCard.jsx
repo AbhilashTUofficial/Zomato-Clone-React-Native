@@ -2,18 +2,18 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { secondary } from '../screens/common_styles';
+import { secondary } from '../../../screens/common_styles';
 import { useNavigation } from '@react-navigation/native';
-import RattingTag from './RattingTag';
-import { likeRestaurant } from '../redux/Restaurant/restaurant-actions';
+import RattingTag from '../../Common/RattingTag';
+import { likeRestaurant } from '../../../redux/Restaurant/restaurant-actions';
 
 const ElongatedCard = ({ restId, restaurants, likeRestaurant }) => {
 
     //? Icons
-    const favIcon = require('../assets/icons/heart_active.png');
-    const notFavIcon = require('../assets/icons/heart_inactive.png');
-    const clockIcon = require('../assets/icons/clockicon.png');
-    const rupeeIcon = require('../assets/icons/rupeeicon.png');
+    const favIcon = require('../../../assets/icons/heart_active.png');
+    const notFavIcon = require('../../../assets/icons/heart_inactive.png');
+    const clockIcon = require('../../../assets/icons/clockicon.png');
+    const rupeeIcon = require('../../../assets/icons/rupeeicon.png');
 
     const navigation = useNavigation();
 

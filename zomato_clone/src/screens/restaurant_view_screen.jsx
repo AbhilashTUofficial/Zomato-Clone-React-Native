@@ -1,14 +1,13 @@
 import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import Wrapper from '../Components/Wrapper';
+import Wrapper from '../Components/Common/Wrapper';
 import { primary, secondary } from '../constants';
-import RestaurantDetails from '../Components/RestaurantDetails';
-import Header from '../Components/RestaurantHeader';
-import VegNonVeg from '../Components/VegNonVegTag';
-import CatergoryExpandable from '../Components/CategoryExpandable';
+import RestaurantDetails from '../Components/RestaurantView/RestaurantDetails';
+import Header from '../Components/RestaurantView/RestaurantHeader';
+import VegNonVeg from '../Components/RestaurantView/VegNonVegTag';
+import CatergoryExpandable from '../Components/RestaurantView/CategoryExpandable';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import BrouseMenu from '../Components/BrouseMenu';
-
+import { BrouseMenu } from '../Components/RestaurantView/BrouseMenu';
 
 
 //? Restaurant Screen
@@ -29,11 +28,13 @@ const RestaurantViewScreen = () => {
         ratting: route.params.ratting,
         location: route.params.location,
         distance: route.params.distance,
+        items: route.params.items,
     };
 
     const categories = route.params.categories;
     const restaurantName = route.params.storeName;
 
+    console.log(categories);
 
     return (
 
@@ -59,7 +60,7 @@ const RestaurantViewScreen = () => {
 
                 </ScrollView>
 
-                <BottomPops categories={categories} />
+                {/* <BottomPops categories={categories} /> */}
 
             </View>
 
