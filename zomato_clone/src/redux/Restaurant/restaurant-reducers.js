@@ -458,11 +458,10 @@ const INITIAL_STATE = {
       ],
     },
   ],
-  currentRest: [],
+  currentRestData: [],
 };
 
 const restaurantReducer = (state = INITIAL_STATE, action) => {
-  console.log(state.currentRest);
   switch (action.type) {
     case 'ADD_TO_CART':
       return {
@@ -481,20 +480,28 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
       };
 
     case 'LIKE_ITEM':
-      console.log('reducer called');
-      state.Restaurants.map(restaurant => {
-        if (restaurant.id === action.payload.id) {
-          restaurant.categories.map(category => {
-            if (category.title === action.payload.category) {
-              category.items.map(item => {
-                if (item.itemTitle === action.payload.itemName) {
-                  item.faved = !item.faved;
-                }
-              });
+      currentRestData.categories.map(category => {
+        if (category.title === action.payload.category) {
+          category.items.map(item => {
+            if (item.itemTitle === action.payload.itemName) {
+              item.faved = !item.faved;
             }
           });
         }
       });
+      console.log(state.currentRestData);
+      return {
+        ...state,
+      };
+
+    case 'LOAD_CURRENT_REST':
+      return {
+        ...state,
+        currentRestData: {...action.payload.restaurant},
+      };
+
+    case 'LOAD_TO_RESTAURANTS':
+      console.log('load to restaurants');
       return {
         ...state,
       };

@@ -27,12 +27,12 @@ const CatergoryExpandable = ({ likeItem, restId, restaurants }) => {
         <View style={CatExpand.cont}>
             {
 
-                categories.map((category) => {
+                categories.map((category, i) => {
                     const [isExpanded, setIsExpanded] = useState(false);
                     const title = category.title;
                     const itemNo = category.items.length;
                     return (
-                        <>
+                        <View key={i}>
                             <TouchableOpacity activeOpacity={1}
                                 style={CatExpand.tile}
                                 onPress={() => { setIsExpanded(!isExpanded); }}>
@@ -51,7 +51,7 @@ const CatergoryExpandable = ({ likeItem, restId, restaurants }) => {
                                 category={title}
                                 likeHandler={likeItem}
                                 restId={restId} />
-                        </>
+                        </View>
                     );
                 })
             }
@@ -93,11 +93,11 @@ const ExpandableView = ({ expanded = false, items, category, likeHandler, restId
                 //! Loop through items list and return each item onto the 
                 //! the category ExpandableView
                 !expanded ?
-                    items.map((item) => {
+                    items.map((item, i) => {
 
                         return (
-                            <>
-                                <View style={CatExpand.expView} key={items.indexOf(item)}>
+                            <View key={i}>
+                                <View style={CatExpand.expView}>
 
                                     <View style={CatExpand.expLeft}>
 
@@ -142,7 +142,7 @@ const ExpandableView = ({ expanded = false, items, category, likeHandler, restId
                                     <Divider borderColor={lightGrey} dashed />
                                 </View>
 
-                            </>
+                            </View>
 
                         );
                     }) : null

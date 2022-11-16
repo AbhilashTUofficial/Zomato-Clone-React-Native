@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
 import TabController from './src/screens/tab_controller';
-import RestaurantViewScreen from './src/screens/restaurant_view_screen';
+import RestaurantViewScreen from './src/screens/RestaurantViewScreen/restaurant_view_screen';
 import AuthScreen from './src/screens/AuthScreen/auth_screen';
 import OTPVerifyScreen from './src/screens/OtpVerifyScreen/otp_verify_screen';
 import { Provider } from 'react-redux';

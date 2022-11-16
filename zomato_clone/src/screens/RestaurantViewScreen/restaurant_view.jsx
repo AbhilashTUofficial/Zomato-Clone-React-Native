@@ -1,40 +1,33 @@
 import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
-import Wrapper from '../Components/Common/Wrapper';
-import { primary, secondary } from '../constants';
-import RestaurantDetails from '../Components/RestaurantView/RestaurantDetails';
-import Header from '../Components/RestaurantView/RestaurantHeader';
-import VegNonVeg from '../Components/RestaurantView/VegNonVegTag';
-import CatergoryExpandable from '../Components/RestaurantView/CategoryExpandable';
+import React, { useEffect, useState } from 'react';
+import Wrapper from '../../Components/Common/Wrapper';
+import { primary, secondary } from '../../constants';
+import RestaurantDetails from '../../Components/RestaurantView/RestaurantDetails';
+import Header from '../../Components/RestaurantView/RestaurantHeader';
+import VegNonVeg from '../../Components/RestaurantView/VegNonVegTag';
+import CatergoryExpandable from '../../Components/RestaurantView/CategoryExpandable';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { BrouseMenu } from '../Components/RestaurantView/BrouseMenu';
+import { BrouseMenu } from '../../Components/RestaurantView/BrouseMenu';
+import { connect } from 'react-redux';
+import { loadToRests } from '../../redux/Restaurant/restaurant-actions';
 
 
 //? Restaurant Screen
 
-const RestaurantViewScreen = () => {
+const RestaurantView = ({ currentRestData, loadToRests }) => {
+
+    const categories = currentRestData.categories;
+    const restaurantName = currentRestData.storeName;
 
     const navigation = useNavigation();
 
-    const route = useRoute();
+    const loadToRestsHandler = () => {
+        loadToRests(currentRestData);
+        navigation.navigate("tabcontroller");
 
-    //! Localizing data
-
-    const resturantDetails = {
-        id: route.params.id,
-        storeName: route.params.storeName,
-        foodTypes: route.params.items,
-        travelTime: route.params.travelTime,
-        ratting: route.params.ratting,
-        location: route.params.location,
-        distance: route.params.distance,
-        items: route.params.items,
     };
 
-    const categories = route.params.categories;
-    const restaurantName = route.params.storeName;
 
-    console.log(categories);
 
     return (
 
@@ -48,13 +41,13 @@ const RestaurantViewScreen = () => {
 
                     showsVerticalScrollIndicator={false}>
 
-                    <Header goBackHandler={() => navigation.navigate("tabcontroller")} name={restaurantName} />
+                    <Header goBackHandler={loadToRestsHandler} name={restaurantName} />
 
-                    <RestaurantDetails restaurant={resturantDetails} />
+                    <RestaurantDetails restaurant={currentRestData} />
 
                     {categories.length == 0 ? null : <VegNonVeg />}
 
-                    <CatergoryExpandable restId={resturantDetails.id} />
+                    <CatergoryExpandable restId={currentRestData.id} />
 
                     <HealthGuide />
 
@@ -68,7 +61,20 @@ const RestaurantViewScreen = () => {
     );
 };
 
-export default RestaurantViewScreen;
+const mapStateToProps = state => {
+    return {
+        currentRestData: state.data.currentRestData,
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadToRests: (restaurant) => dispatch(loadToRests(restaurant)),
+
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantView);
 
 
 const BottomPops = (props) => {
@@ -92,9 +98,9 @@ const HealthGuide = () => {
         <View style={RestViewScrStyle.hgCont}>
 
             {
-                contents.map((text) => {
+                contents.map((text, i) => {
                     return (
-                        <View
+                        <View key={i}
                             style={RestViewScrStyle.row}>
 
                             <Text style={{ fontSize: 28 }}>• </Text>

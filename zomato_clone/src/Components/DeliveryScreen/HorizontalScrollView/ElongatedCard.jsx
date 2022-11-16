@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { secondary } from '../../../screens/common_styles';
 import { useNavigation } from '@react-navigation/native';
 import RattingTag from '../../Common/RattingTag';
-import { likeRestaurant } from '../../../redux/Restaurant/restaurant-actions';
+import { likeRestaurant, loadCurrentRest } from '../../../redux/Restaurant/restaurant-actions';
 
-const ElongatedCard = ({ restId, restaurants, likeRestaurant }) => {
+const ElongatedCard = ({ restId, restaurants, likeRestaurant, loadCurrentRest }) => {
 
     //? Icons
     const favIcon = require('../../../assets/icons/heart_active.png');
@@ -29,7 +29,7 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant }) => {
     const id = restaurant.id;
     const img = restaurant.img;
     const resName = restaurant.storeName;
-    const ratting = " restaurant.ratting";
+    const ratting = restaurant.ratting;
     const travelTime = restaurant.travelTime;
     const distance = restaurant.distance;
     const cost = restaurant.cost;
@@ -40,11 +40,17 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant }) => {
         setFav(!faved);
     };
 
+    const loadRestHandler = () => {
+        loadCurrentRest(restaurant);
+        navigation.navigate("restaurantscreen", restaurant);
+
+    };
+
 
     return (
 
         <TouchableOpacity activeOpacity={0.8} style={ElongatedCardStyles.card}
-            onPress={() => navigation.navigate("restaurantscreen", restaurant)}>
+            onPress={loadRestHandler}>
 
             {/*//? Header part of the componet */}
 
@@ -114,6 +120,8 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant }) => {
 const mapDispatchToProps = dispatch => {
     return {
         likeRestaurant: (id) => dispatch(likeRestaurant(id)),
+        loadCurrentRest: (restaurant) => dispatch(loadCurrentRest(restaurant)),
+
     };
 };
 

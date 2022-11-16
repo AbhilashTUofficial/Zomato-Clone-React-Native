@@ -28,6 +28,7 @@ const HorizontalScrollView = ({ recommendedList, biryaniList, newData }) => {
 
                         return (
                             <ElongatedCard
+
                                 restId={i.id}
                                 key={i.id} />
                         );
