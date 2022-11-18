@@ -17,13 +17,11 @@ export const likeRestaurant = restId => {
   };
 };
 
-export const likeItem = (id, itemName, category) => {
+export const likeItem = id => {
   return {
     type: 'LIKE_ITEM',
     payload: {
-      id: id,
-      itemName: itemName,
-      category: category,
+      itemId: id,
     },
   };
 };
@@ -41,7 +39,7 @@ export const loadToRests = restaurant => {
   return {
     type: 'LOAD_TO_RESTAURANTS',
     payload: {
-      restaurant: restaurant,
+      currentRest: restaurant,
     },
   };
 };

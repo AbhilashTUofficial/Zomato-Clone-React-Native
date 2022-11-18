@@ -38,6 +38,7 @@ export const authStyles = StyleSheet.create({
 
   phinput: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   ccContainer: {
@@ -59,9 +60,9 @@ export const authStyles = StyleSheet.create({
     borderRadius: 6,
     paddingHorizontal: 6,
     flexDirection: 'row',
-    margin: 4,
-    marginRight: 200,
-    width: '84%',
+    marginLeft: 4,
+    marginVertical: 4,
+    flex: 1,
   },
 
   flag: {

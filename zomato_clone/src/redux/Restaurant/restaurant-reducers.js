@@ -19,6 +19,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 701,
               itemTitle: 'Normal Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -30,6 +31,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 702,
               itemTitle: 'Vegitable Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -46,6 +48,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 703,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -77,6 +80,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 704,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/burger_item.png'),
@@ -87,6 +91,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 705,
               itemTitle: 'Vegitable Pizza',
               bestseller: true,
               itemImg: require('../../assets/food_items/soup_item.png'),
@@ -96,6 +101,7 @@ const INITIAL_STATE = {
                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
             },
             {
+              itemId: 706,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -111,6 +117,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 707,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -126,6 +133,7 @@ const INITIAL_STATE = {
           title: 'Winter Special',
           items: [
             {
+              itemId: 708,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -197,6 +205,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 701,
               itemTitle: 'Normal Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -208,6 +217,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 702,
               itemTitle: 'Vegitable Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -224,6 +234,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 703,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -255,6 +266,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 704,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/burger_item.png'),
@@ -265,6 +277,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 705,
               itemTitle: 'Vegitable Pizza',
               bestseller: true,
               itemImg: require('../../assets/food_items/soup_item.png'),
@@ -274,6 +287,7 @@ const INITIAL_STATE = {
                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
             },
             {
+              itemId: 706,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -289,6 +303,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 707,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -304,6 +319,7 @@ const INITIAL_STATE = {
           title: 'Winter Special',
           items: [
             {
+              itemId: 708,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -337,6 +353,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 701,
               itemTitle: 'Normal Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -348,6 +365,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 702,
               itemTitle: 'Vegitable Burger',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -364,6 +382,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 703,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -395,6 +414,7 @@ const INITIAL_STATE = {
           title: 'Recommended',
           items: [
             {
+              itemId: 704,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/burger_item.png'),
@@ -405,6 +425,7 @@ const INITIAL_STATE = {
               addedToCart: 0,
             },
             {
+              itemId: 705,
               itemTitle: 'Vegitable Pizza',
               bestseller: true,
               itemImg: require('../../assets/food_items/soup_item.png'),
@@ -414,6 +435,7 @@ const INITIAL_STATE = {
                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
             },
             {
+              itemId: 706,
               itemTitle: 'Chicken Burger Combo',
               bestseller: true,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -429,6 +451,7 @@ const INITIAL_STATE = {
           title: 'Special',
           items: [
             {
+              itemId: 707,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -444,6 +467,7 @@ const INITIAL_STATE = {
           title: 'Winter Special',
           items: [
             {
+              itemId: 708,
               itemTitle: 'Chicken Burger Combo',
               bestseller: false,
               itemImg: require('../../assets/food_items/biryani_item.png'),
@@ -480,19 +504,14 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
       };
 
     case 'LIKE_ITEM':
-      currentRestData.categories.map(category => {
-        if (category.title === action.payload.category) {
-          category.items.map(item => {
-            if (item.itemTitle === action.payload.itemName) {
-              item.faved = !item.faved;
-            }
-          });
-        }
+      state.currentRestData.categories.map(category => {
+        category.items.map(item => {
+          if (item.itemId === action.payload.itemId) {
+            item.faved = !item.faved;
+          }
+        });
       });
-      console.log(state.currentRestData);
-      return {
-        ...state,
-      };
+      return {...state};
 
     case 'LOAD_CURRENT_REST':
       return {
@@ -502,6 +521,21 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
 
     case 'LOAD_TO_RESTAURANTS':
       console.log('load to restaurants');
+      // load to all restaurants
+      Restaurants.map(restaurant => {
+        if (restaurant.id === action.payload.currentRest.restId) {
+          return {
+            //TODO need to find a way to replace the update data,
+            //TODO might get something if you look at that web demo.
+
+            ...state,
+            Restaurants: {},
+          };
+          restaurant = action.payload.currentRest;
+        }
+      });
+      console.log(state);
+
       return {
         ...state,
       };

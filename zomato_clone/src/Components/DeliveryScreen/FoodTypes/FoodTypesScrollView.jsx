@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { secondary } from '../../../constants';
 import { foodTypes } from '../../../model/FoodTypesList';
@@ -10,22 +10,13 @@ const FoodTypesScrollView = () => {
 
     return (
 
-        <ScrollView style={foodTypesStyles.cont}
+        <FlatList style={foodTypesStyles.cont}
             horizontal
-            showsHorizontalScrollIndicator={false}>
-            {
-                //! loop through the foodtypes and return a
-                //! circular components for each.
-
-                items.map((i) => {
-                    return (
-
-                        <CircularCard foodtype={i} key={i.id} text={i.item} />
-                    );
-                })
-            }
-        </ScrollView>
-
+            showsHorizontalScrollIndicator={false}
+            data={items}
+            renderItem={(itemData) => {
+                return (<CircularCard foodType={itemData.item} />);
+            }} />
     );
 };
 
@@ -33,17 +24,17 @@ export default FoodTypesScrollView;
 
 
 //? Circular component
-const CircularCard = (props) => {
+const CircularCard = ({ foodType }) => {
     return (
 
         <TouchableOpacity activeOpacity={0.8} style={foodTypesStyles.cirAvt}>
 
             <Image
-                source={props.foodtype.img}
+                source={foodType.img}
                 style={foodTypesStyles.img} />
 
             <Text style={foodTypesStyles.text}>
-                {props.foodtype.text}</Text>
+                {foodType.text}</Text>
 
         </TouchableOpacity>
     );
