@@ -17,6 +17,7 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
     const nonVegIcon = require('../../assets/icons/nonvegicon.png');
 
 
+    //TODO: need a way to manage this state problem.
 
 
     useEffect(() => {
@@ -26,6 +27,13 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
             useNativeDriver: false
         }).start();
     }, [expanded, height]);
+
+    var arr = [];
+    items.map((i) => {
+        arr.push(i);
+    });
+    const [isFaved, setFaved] = useState(arr);
+
     return (
         <Animated.View
             style={expViewStyles.expTile}>
@@ -35,11 +43,14 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
                 !expanded ?
                     items.map((item, i) => {
 
-                        const [isFaved, setFaved] = useState(item.faved);
+                        // const [isFaved, setFaved] = useState(item.faved);
+                        // const isFaved = false;
 
                         const likeItemHandler = () => {
                             likeItem(item.itemId);
-                            setFaved(!isFaved);
+                            let arr = isFaved;
+                            arr[i] = !isFaved[i];
+                            setFaved(arr);
                         };
 
                         return (
@@ -71,7 +82,7 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
                                             {item.itemDescription}
                                         </Text>
 
-                                        <FavBtn handler={likeItemHandler} isFaved={isFaved} />
+                                        <FavBtn handler={likeItemHandler} isFaved={isFaved[i]} />
 
                                     </View>
 
@@ -226,7 +237,6 @@ const expViewStyles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "flex-start",
         marginTop: 4,
-        marginBottom: 8,
         marginHorizontal: 16,
         marginBottom: 16,
     },

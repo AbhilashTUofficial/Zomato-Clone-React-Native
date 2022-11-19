@@ -22,13 +22,6 @@ const AuthScreen = (props) => {
 
                     <ScreenDivider text={"Log in or sign up"} />
 
-                    {
-                        // TODO: Nedd to look at this.
-                        // The phone number input componet is not aligning correctly.
-                    }
-
-                    {/* User input fields */}
-
                     <View style={{ justifyContent: "center" }}>
 
                         <PhInputField />
@@ -170,13 +163,13 @@ const OverlayBtns = (props) => {
     return (
         <View style={authStyles.obContainer}>
 
-            <TouchableOpacity style={authStyles.overlayBtn}>
+            <TouchableOpacity activeOpacity={0.8} style={authStyles.overlayBtn}>
 
                 <Image source={languageIcon} style={authStyles.dropdown} />
 
             </TouchableOpacity>
 
-            <TouchableOpacity style={authStyles.overlayBtn} {...props}>
+            <TouchableOpacity activeOpacity={0.8} style={authStyles.overlayBtn} {...props}>
 
                 <Text style={{ color: "white" }}>Skip</Text>
 

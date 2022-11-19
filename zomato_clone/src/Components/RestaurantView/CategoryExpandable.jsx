@@ -30,11 +30,15 @@ const CatergoryExpandable = ({ restId, restaurants }) => {
                     const [isExpanded, setIsExpanded] = useState(false);
                     const title = category.title;
                     const itemNo = category.items.length;
+
+                    const expandHandler = () => {
+                        setIsExpanded(!isExpanded);
+                    };
                     return (
                         <View key={i}>
                             <TouchableOpacity activeOpacity={1}
                                 style={CatExpand.tile}
-                                onPress={() => { setIsExpanded(!isExpanded); }}>
+                                onPress={expandHandler}>
 
                                 <Text style={CatExpand.title} >
                                     {title} ({itemNo})</Text>

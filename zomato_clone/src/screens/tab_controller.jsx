@@ -1,4 +1,4 @@
-import { ImageBackground, StatusBar, View } from "react-native";
+import { Image, StatusBar, View } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { darkGrey, secondary } from "../constants";
 import MoneyScreen from "./money_screen";
@@ -105,7 +105,7 @@ const TabIcon = (props) => {
                 height: 26
             }}>
 
-            <ImageBackground
+            <Image
                 {...props}
                 style={{
                     height: '100%',

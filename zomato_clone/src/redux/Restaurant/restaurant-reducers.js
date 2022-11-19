@@ -520,7 +520,6 @@ const restaurantReducer = (state = INITIAL_STATE, action) => {
       };
 
     case 'LOAD_TO_RESTAURANTS':
-      console.log('load to restaurants');
       // load to all restaurants
       Restaurants.map(restaurant => {
         if (restaurant.id === action.payload.currentRest.restId) {

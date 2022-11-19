@@ -22,30 +22,27 @@ const DeliveryScreen = () => {
                 <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}
                     refreshControl={<RefreshControl refreshing={refreshing} />}>
 
+                    <Header />
 
-                    <View >
-                        <Header />
+                    <StickyHeader />
 
-                        <StickyHeader />
+                    <OfferBanner source={require("../../assets/img/foodbanner1.jpg")} />
 
-                        <OfferBanner source={require("../../assets/img/foodbanner1.jpg")} />
+                    <Heading label={"Check this out!"} />
 
-                        <Heading label={"Check this out!"} />
+                    <OfferBanner source={require("../../assets/img/foodbanner2.jpg")} />
 
-                        <OfferBanner source={require("../../assets/img/foodbanner2.jpg")} />
+                    <Heading label={"Eat what makes you happy"} />
 
-                        <Heading label={"Eat what makes you happy"} />
+                    <FoodTypesScrollView />
 
-                        <FoodTypesScrollView />
+                    <HorizontalScrollView />
 
-                        <HorizontalScrollView />
+                    <Heading label={"All restaurants around you"} />
 
-                        <Heading label={"All restaurants around you"} />
+                    <RestaurantsScrollView />
 
-                        <RestaurantsScrollView />
-
-                        <SafeArea />
-                    </View>
+                    <SafeArea />
 
                 </ScrollView>
 

@@ -7,10 +7,9 @@ import Header from '../../Components/RestaurantView/RestaurantHeader';
 import VegNonVeg from '../../Components/RestaurantView/VegNonVegTag';
 import CatergoryExpandable from '../../Components/RestaurantView/CategoryExpandable';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { BrouseMenu } from '../../Components/RestaurantView/BrouseMenu';
 import { connect } from 'react-redux';
 import { loadToRests } from '../../redux/Restaurant/restaurant-actions';
-
+import BrouseMenu from '../../Components/RestaurantView/BrouseMenu';
 
 //? Restaurant Screen
 
@@ -24,10 +23,7 @@ const RestaurantView = ({ currentRestData, loadToRests }) => {
     const loadToRestsHandler = () => {
         loadToRests(currentRestData);
         navigation.navigate("tabcontroller");
-
     };
-
-
 
     return (
 
@@ -45,15 +41,16 @@ const RestaurantView = ({ currentRestData, loadToRests }) => {
 
                     <RestaurantDetails restaurant={currentRestData} />
 
-                    {categories.length == 0 ? null : <VegNonVeg />}
+                    {categories.length !== 0 && <VegNonVeg />}
 
                     <CatergoryExpandable restId={currentRestData.id} />
 
                     <HealthGuide />
 
                 </ScrollView>
-
-                {/* <BottomPops categories={categories} /> */}
+                <View style={RestViewScrStyle.bottomPopCont}>
+                    <BrouseMenu />
+                </View>
 
             </View>
 
@@ -66,24 +63,14 @@ const mapStateToProps = state => {
         currentRestData: state.data.currentRestData,
     };
 };
-
-const mapDispatchToProps = dispatch => {
+const mapStateToDispatch = dispatch => {
     return {
         loadToRests: (restaurant) => dispatch(loadToRests(restaurant)),
-
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantView);
+export default connect(mapStateToProps, mapStateToDispatch)(RestaurantView);
 
-
-const BottomPops = (props) => {
-    return (
-        <View style={RestViewScrStyle.bottomPopCont}>
-            <BrouseMenu categories={props.categories} />
-        </View>
-    );
-};
 
 
 const HealthGuide = () => {

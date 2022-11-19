@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { secondary } from "../../constants";
+import { connect } from 'react-redux';
 
-
-const BrouseMenu = (props) => {
+const BrouseMenu = ({ currentRestData }) => {
     const dinningIcon = require("../../assets/icons/dinning.png");
     const cnlIcon = require("../../assets/icons/cancel_white.png");
     const divider = require("../../assets/img/fancydivider.png");
@@ -12,37 +12,45 @@ const BrouseMenu = (props) => {
     const clickHandler = () => {
         setClick(!clicked);
     };
-    const categories = props.categories;
+    const categories = currentRestData.categories;
     return (
         categories.length == 0 ? null : <>
 
-            {
-                clicked ? <View style={BrouseMenuStyles.overlayCard}>
+            <Modal
+                animationType="slide"
+                transparent
+                visible={clicked}
+                onRequestClose={clickHandler} >
 
-                    <Text style={BrouseMenuStyles.overlayTitle}>Menu</Text>
+                <Pressable style={BrouseMenuStyles.overlayBackground}
+                    onPress={clickHandler} >
 
-                    <Image style={BrouseMenuStyles.overlayDiv}
-                        source={divider}></Image>
+                    <View style={BrouseMenuStyles.overlayCard}>
 
-                    {
-                        categories.map((category) => {
+                        <Text style={BrouseMenuStyles.overlayTitle}>Menu</Text>
 
-                            const title = category.title;
-                            const count = category.items.length;
+                        <Image style={BrouseMenuStyles.overlayDiv}
+                            source={divider}></Image>
 
-                            return (
-                                <View style={BrouseMenuStyles.olrow}>
-                                    <Text style={BrouseMenuStyles.olrowText}>{title}</Text>
-                                    <Text style={BrouseMenuStyles.olrowText}>{count}</Text>
-                                </View>
-                            );
-                        })
-                    }
+                        <FlatList
+                            data={categories}
+                            renderItem={(itemData) => {
+                                return (
+                                    <View style={BrouseMenuStyles.olrow}>
+                                        <Text style={BrouseMenuStyles.olrowText}>{itemData.item.title}</Text>
+                                        <Text style={BrouseMenuStyles.olrowText}>{itemData.item.items.length}</Text>
+                                    </View>
+                                );
+                            }} />
 
-                </View> : null
-            }
 
-            <TouchableOpacity activeOpacity={1} style={BrouseMenuStyles.overlayBtn}
+                    </View>
+                </Pressable>
+
+            </Modal>
+
+            <TouchableOpacity activeOpacity={1}
+                style={BrouseMenuStyles.overlayBtn}
                 onPress={clickHandler}>
 
                 {
@@ -57,7 +65,13 @@ const BrouseMenu = (props) => {
     );
 };
 
-export default BrouseMenu;
+const mapStateToProps = state => {
+    return {
+        currentRestData: state.data.currentRestData,
+    };
+};
+
+export default connect(mapStateToProps)(BrouseMenu);
 
 const BrouseMenuStyles = StyleSheet.create({
     overlayBtn: {
@@ -81,12 +95,16 @@ const BrouseMenuStyles = StyleSheet.create({
         marginVertical: 6,
     },
     overlayCard: {
-        width: "92%",
         backgroundColor: "white",
         elevation: 4,
         borderRadius: 24,
         marginBottom: 16,
+        marginHorizontal: 16,
         paddingBottom: 16,
+        position: 'absolute',
+        left: 16,
+        right: 16,
+        bottom: 56,
 
     },
     overlayTitle: {
@@ -117,4 +135,8 @@ const BrouseMenuStyles = StyleSheet.create({
         marginRight: 4,
         marginTop: 2,
     },
+    overlayBackground: {
+        backgroundColor: "transparent",
+        flex: 1,
+    }
 });
