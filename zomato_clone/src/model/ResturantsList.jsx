@@ -28,7 +28,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: true,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                         {
                             itemId: 702,
@@ -40,7 +40,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                         {
                             itemId: 709,
@@ -52,7 +52,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -69,7 +69,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -101,7 +101,7 @@ export const initialData = {
                             itemPrice: '₹ 250',
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                         {
                             itemId: 705,
@@ -112,6 +112,7 @@ export const initialData = {
                             itemPrice: '₹ 250',
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
+                            onCart: 0,
                         },
                         {
                             itemId: 706,
@@ -122,7 +123,7 @@ export const initialData = {
                             itemPrice: '₹ 250',
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -138,7 +139,7 @@ export const initialData = {
                             itemPrice: '₹ 250',
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -154,7 +155,7 @@ export const initialData = {
                             itemPrice: '₹ 250',
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -185,7 +186,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -217,7 +218,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -234,7 +235,7 @@ export const initialData = {
                             itemDescription:
                                 'Combo of crispy Veg Patty & a bowl of hot & delicious Maggi[serves 1]',
                             faved: false,
-                            addedToCart: 0,
+                            onCart: 0,
                         },
                     ],
                 },
@@ -259,5 +260,14 @@ export const initialData = {
 
     currentRest: {
         id: 0
+    },
+    cart: {
+        metaData: {
+            storeName: null,
+            itemCount: null,
+            totalPrice: null,
+
+        },
+        items: null
     }
 };

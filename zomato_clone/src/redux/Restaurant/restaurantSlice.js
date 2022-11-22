@@ -12,15 +12,17 @@ const restaurantSlice = createSlice({
       currentState.faved = !currentState.faved;
     },
     likeItem: (state, action) => {
+      // Locate the current item
       var currentRest = state.Restaurants.find(
-        restaurant => restaurant.id === action.payload.id,
+        restaurant => restaurant.id === action.payload.restId,
       );
-      var currentCategroy = currentRest.find(
+      var currentCategroy = currentRest.categories.find(
         category => category.title === action.payload.category,
       );
-      var currentItem = currentCategroy.find(
-        item => item.id === action.payload.itemId,
+      var currentItem = currentCategroy.items.find(
+        item => item.itemId === action.payload.itemId,
       );
+      // Update the value
       currentItem.faved = !currentItem.faved;
     },
 
@@ -28,14 +30,67 @@ const restaurantSlice = createSlice({
       var currentRest = state.currentRest;
       currentRest.id = action.payload;
     },
+    addItem: (state, action) => {
+      // Locate the current item
+      var currentRest = state.Restaurants.find(
+        restaurant => restaurant.id === action.payload.restId,
+      );
+      var currentCategroy = currentRest.categories.find(
+        category => category.title === action.payload.category,
+      );
+      var currentItem = currentCategroy.items.find(
+        item => item.itemId === action.payload.itemId,
+      );
+      // Update the value
+      currentItem.onCart = currentItem.onCart + 1;
+      // // Update cart items
+      // var cart = state.cart;
+      // var items = cart.items;
+      // if (cart.items === null) {
+      //   console.log('called');
+      //   items.push(currentItem);
+      // } else {
+      //   cart.items.map(item => {
+      //     if (item.itemId === currentItem.itemId) {
+      //       item.onCart = currentItem.onCart;
+      //     } else {
+      //       cart.items.push({currentItem});
+      //     }
+      //   });
+      // }
+      // Update cart metadata
+      // console.log(cart);
+    },
+    removeItem: (state, action) => {
+      // Locate the current item
+      var currentRest = state.Restaurants.find(
+        restaurant => restaurant.id === action.payload.restId,
+      );
+      var currentCategroy = currentRest.categories.find(
+        category => category.title === action.payload.category,
+      );
+      var currentItem = currentCategroy.items.find(
+        item => item.itemId === action.payload.itemId,
+      );
 
-    removeAllItems: state => {
-      return [];
+      // Update the value
+      currentItem.onCart = currentItem.onCart - 1;
+      // Update cart items
+      // state.cart.items.pop(currentItem);
+    },
+    addToBuy: (state, action) => {
+      //restId, category, itemId
+      // chart: restName, totalCost,itemCounts, restId, travelTime,
     },
   },
 });
 
-export const {likeRestaurant, currentRestaurant, removeAllItems} =
-  restaurantSlice.actions;
+export const {
+  likeRestaurant,
+  currentRestaurant,
+  likeItem,
+  addItem,
+  removeItem,
+} = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;

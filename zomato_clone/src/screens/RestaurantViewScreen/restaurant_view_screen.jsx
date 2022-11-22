@@ -41,7 +41,7 @@ const RestaurantViewScreen = () => {
 
                     {restaurant.categories.length !== 0 && <VegNonVeg />}
 
-                    <CatergoryExpandable restId={restaurant.id} />
+                    <CatergoryExpandable restaurant={restaurant} restId={restaurant.id} />
 
                     <HealthGuide />
 

@@ -1,25 +1,19 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { secondary } from '../../constants';
-import { connect } from 'react-redux';
 import ExpandableView from './ExpandableView';
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
 
 
-const CatergoryExpandable = ({ restId, restaurants }) => {
+const CatergoryExpandable = ({ restaurant, restId }) => {
 
     const dropdownIcon1 = require('../../assets/icons/dropdown3.png');
     const dropdownIcon2 = require('../../assets/icons/dropdown3.1.png');
 
-    var categories;
+    var categories = restaurant.categories;
 
-    restaurants.map((restaurant) => {
-        if (restaurant.id === restId) {
-            categories = restaurant.categories;
-        }
-    });
 
     return (
         <View style={CatExpand.cont}>
@@ -30,6 +24,7 @@ const CatergoryExpandable = ({ restId, restaurants }) => {
                     const [isExpanded, setIsExpanded] = useState(false);
                     const title = category.title;
                     const itemNo = category.items.length;
+                    const items = category.items;
 
                     const expandHandler = () => {
                         setIsExpanded(!isExpanded);
@@ -50,9 +45,10 @@ const CatergoryExpandable = ({ restId, restaurants }) => {
 
                             <ExpandableView
                                 expanded={isExpanded}
-                                items={category.items}
+                                items={items}
                                 category={title}
-                                restId={restId} />
+                                restId={restId}
+                            />
                         </View>
                     );
                 })
@@ -61,13 +57,8 @@ const CatergoryExpandable = ({ restId, restaurants }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        restaurants: state.data.Restaurants,
-    };
-};
 
-export default connect(mapStateToProps)(CatergoryExpandable);
+export default CatergoryExpandable;
 
 
 

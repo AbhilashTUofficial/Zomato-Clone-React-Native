@@ -3,15 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { darkGrey, lightGrey, primary, secondary } from '../../constants';
 import Divider from 'react-native-divider';
 import { useDispatch, useSelector } from 'react-redux';
-import { connect } from 'react-redux';
-import { likeItem } from '../../redux/Restaurant/restaurant-actions';
+import { likeItem, addItem, removeItem } from '../../redux/Restaurant/restaurantSlice';
+
 
 //? CatergoryExpandable shows the items
 //? currently available on the reestaurant
 
 
-const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
-
+const ExpandableView = ({ expanded = false, items, category, restId }) => {
     const [height] = useState(new Animated.Value(0));
     const vegIcon = require('../../assets/icons/vegicon.png');
     const nonVegIcon = require('../../assets/icons/nonvegicon.png');
@@ -28,11 +27,6 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
         }).start();
     }, [expanded, height]);
 
-    var arr = [];
-    items.map((i) => {
-        arr.push(i);
-    });
-    const [isFaved, setFaved] = useState(arr);
 
     return (
         <Animated.View
@@ -42,17 +36,6 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
                 //! the category ExpandableView
                 !expanded ?
                     items.map((item, i) => {
-
-                        // const [isFaved, setFaved] = useState(item.faved);
-                        // const isFaved = false;
-
-                        const likeItemHandler = () => {
-                            likeItem(item.itemId);
-                            let arr = isFaved;
-                            arr[i] = !isFaved[i];
-                            setFaved(arr);
-                        };
-
                         return (
                             <View key={i}>
                                 <View style={expViewStyles.expView}>
@@ -82,7 +65,7 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
                                             {item.itemDescription}
                                         </Text>
 
-                                        <FavBtn handler={likeItemHandler} isFaved={isFaved[i]} />
+                                        <FavBtn faved={item.faved} itemId={item.itemId} category={category} restId={restId} />
 
                                     </View>
 
@@ -90,7 +73,7 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
 
                                         <Image source={item.itemImg} style={expViewStyles.expItemImg} />
 
-                                        <AddBtn itemName={item.itemTitle} />
+                                        <AddBtn onCart={item.onCart} itemId={item.itemId} category={category} restId={restId} />
 
                                     </View>
                                 </View>
@@ -111,26 +94,29 @@ const ExpandableView = ({ expanded = false, items, restId, likeItem }) => {
     );
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        likeItem: (id, itemName, category) => dispatch(likeItem(id, itemName, category)),
-    };
-};
 
-export default connect(null, mapDispatchToProps)(ExpandableView);
+export default ExpandableView;
 
 
 
 
-const FavBtn = ({ handler, isFaved }) => {
+const FavBtn = ({ faved, itemId, category, restId }) => {
 
     //? Icons
     const favIcon = require('../../assets/icons/heart_active.png');
     const notFavIcon = require('../../assets/icons/heart_inactive.png');
 
+    const dispatch = useDispatch();
+    const [isFaved, setFaved] = useState(faved);
+    const likeHandler = () => {
+        dispatch(likeItem({ itemId, category, restId }));
+        setFaved(!isFaved);
+    };
+
+
     return (
         <TouchableOpacity activeOpacity={0.6} style={expViewStyles.favBtn}
-            onPress={handler} >
+            onPress={likeHandler} >
 
             <Image source={isFaved ? favIcon : notFavIcon} style={expViewStyles.favIcon} />
 
@@ -140,22 +126,22 @@ const FavBtn = ({ handler, isFaved }) => {
 
 
 
-const AddBtn = ({ itemName, category = "" }) => {
-    const categories = useSelector(obj => obj.items);
-
+const AddBtn = ({ onCart, itemId, category, restId }) => {
     const dispatch = useDispatch();
 
+    const [itemCount, setItemCount] = useState(onCart);
+
     const addItemHandler = () => {
-        console.log(categories);
-
-        dispatch(addItem(itemName, category));
-
+        dispatch(addItem({ itemId, category, restId }));
+        setItemCount(itemCount + 1);
     };
 
     const removeItemHandler = () => {
-        dispatch(removeItem(itemName, category));
+        dispatch(removeItem({ itemId, category, restId }));
+
+        setItemCount(itemCount - 1);
+
     };
-    const [itemCount, setItemCount] = useState(0);
 
 
     return (
