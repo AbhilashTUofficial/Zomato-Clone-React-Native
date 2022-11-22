@@ -1,12 +1,12 @@
 import { ScrollView, View } from 'react-native';
 import React, { useState } from 'react';
-import { Restaurants } from '../../../model/ResturantsList';
+import { initialData } from '../../../model/ResturantsList';
 import RestaurantCard from './RestaurantCard';
 
 //? All Restaurants available 
 const RestaurantsScrollView = () => {
 
-    const [restaurants, setItems] = useState(Restaurants);
+    const [restaurants, setItems] = useState(initialData.Restaurants);
 
     return (
 

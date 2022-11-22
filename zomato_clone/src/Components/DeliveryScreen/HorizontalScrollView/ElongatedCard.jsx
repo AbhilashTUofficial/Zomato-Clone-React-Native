@@ -1,13 +1,13 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
 import { useState } from 'react';
-import { connect } from 'react-redux';
 import { secondary } from '../../../screens/common_styles';
 import { useNavigation } from '@react-navigation/native';
 import RattingTag from '../../Common/RattingTag';
-import { likeRestaurant, loadCurrentRest } from '../../../redux/Restaurant/restaurant-actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { likeRestaurant, currentRestaurant } from '../../../redux/Restaurant/restaurantSlice';
 
-const ElongatedCard = ({ restId, restaurants, likeRestaurant, loadCurrentRest }) => {
+const ElongatedCard = ({ restId }) => {
 
     //? Icons
     const favIcon = require('../../../assets/icons/heart_active.png');
@@ -16,14 +16,11 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant, loadCurrentRest })
     const rupeeIcon = require('../../../assets/icons/rupeeicon.png');
 
     const navigation = useNavigation();
+    const data = useSelector((state) => state.data);
+    const dispatch = useDispatch();
 
-    var restaurant = [];
-
-    restaurants.map((rest) => {
-        if (rest.id === restId) {
-            restaurant = rest;
-        }
-    });
+    const restaurants = data.Restaurants;
+    const restaurant = restaurants.find((restaurant) => restaurant.id === restId);
 
     const [faved, setFav] = useState(restaurant.faved);
     const id = restaurant.id;
@@ -36,21 +33,19 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant, loadCurrentRest })
     const items = restaurant.items;
 
     const likeHandler = () => {
-        likeRestaurant(id);
+        dispatch(likeRestaurant(id));
         setFav(!faved);
     };
-
-    const loadRestHandler = () => {
-        loadCurrentRest(restaurant);
-        navigation.navigate("restaurantscreen", restaurant);
-
+    const navigateHandler = () => {
+        dispatch(currentRestaurant(id));
+        navigation.navigate("restaurantscreen");
     };
 
 
     return (
 
         <TouchableOpacity activeOpacity={0.8} style={ElongatedCardStyles.card}
-            onPress={loadRestHandler}>
+            onPress={navigateHandler}>
 
             {/*//? Header part of the componet */}
 
@@ -117,23 +112,8 @@ const ElongatedCard = ({ restId, restaurants, likeRestaurant, loadCurrentRest })
     );
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        likeRestaurant: (id) => dispatch(likeRestaurant(id)),
-        loadCurrentRest: (restaurant) => dispatch(loadCurrentRest(restaurant)),
 
-    };
-};
-
-const mapStateToProps = state => {
-    return {
-        restaurants: state.data.Restaurants,
-    };
-};
-
-
-//! pass in null if you not using mapStateToProps,
-export default connect(mapStateToProps, mapDispatchToProps)(ElongatedCard);
+export default ElongatedCard;
 
 const ElongatedCardStyles = StyleSheet.create({
     card: {

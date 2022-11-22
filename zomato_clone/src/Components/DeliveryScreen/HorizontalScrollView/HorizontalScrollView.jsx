@@ -1,13 +1,30 @@
 import { FlatList, View } from 'react-native';
 import React from 'react';
-import { connect } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import ElongatedCard from './ElongatedCard';
 import Heading from '../Common/Heading';
 
 //? A horinontal scroll view which can display restaurants 
 //? as a elevated card.
-const HorizontalScrollView = ({ recommendedList, biryaniList, newData }) => {
+const HorizontalScrollView = () => {
+    const data = useSelector((state) => state.data);
+
+    var recommendedList = [];
+    var biryaniList = [];
+
+    data.Restaurants.map((restaurant) => {
+        var tags = restaurant.tags;
+        if (tags.includes("recommended")) {
+            recommendedList.push(restaurant);
+        }
+    });
+
+    data.Restaurants.map((restaurant) => {
+        var tags = restaurant.tags;
+        if (tags.includes("biryani")) {
+            biryaniList.push(restaurant);
+        }
+    });
     return (
         <View
             style={{
@@ -16,6 +33,7 @@ const HorizontalScrollView = ({ recommendedList, biryaniList, newData }) => {
             }}>
 
             <Heading label={"Recommended for you"} />
+
 
             <FlatList
                 horizontal
@@ -45,15 +63,7 @@ const HorizontalScrollView = ({ recommendedList, biryaniList, newData }) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        recommendedList: state.data.Recommended,
-        biryaniList: state.data.Biryani,
-    };
-};
-
-
-export default connect(mapStateToProps)(HorizontalScrollView);
+export default HorizontalScrollView;
 
 
 

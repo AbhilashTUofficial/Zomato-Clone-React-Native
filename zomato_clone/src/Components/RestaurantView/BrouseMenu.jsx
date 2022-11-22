@@ -3,7 +3,7 @@ import { FlatList, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, 
 import { secondary } from "../../constants";
 import { connect } from 'react-redux';
 
-const BrouseMenu = ({ currentRestData }) => {
+const BrouseMenu = ({ restaurant }) => {
     const dinningIcon = require("../../assets/icons/dinning.png");
     const cnlIcon = require("../../assets/icons/cancel_white.png");
     const divider = require("../../assets/img/fancydivider.png");
@@ -12,9 +12,9 @@ const BrouseMenu = ({ currentRestData }) => {
     const clickHandler = () => {
         setClick(!clicked);
     };
-    const categories = currentRestData.categories;
+
     return (
-        categories.length == 0 ? null : <>
+        restaurant.categories.length == 0 ? null : <>
 
             <Modal
                 animationType="slide"
@@ -33,7 +33,7 @@ const BrouseMenu = ({ currentRestData }) => {
                             source={divider}></Image>
 
                         <FlatList
-                            data={categories}
+                            data={restaurant.categories}
                             renderItem={(itemData) => {
                                 return (
                                     <View style={BrouseMenuStyles.olrow}>

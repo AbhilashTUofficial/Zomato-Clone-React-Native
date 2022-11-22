@@ -1,8 +1,11 @@
 import { lightGrey, secondary } from '../../constants';
 import { View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
-const Header = ({ goBackHandler, name }) => {
+const Header = ({ name }) => {
+    const navigation = useNavigation();
+
     return (
         <View
             style={{
@@ -12,8 +15,6 @@ const Header = ({ goBackHandler, name }) => {
                 paddingTop: 20,
                 backgroundColor: "white",
                 alignItems: "center",
-                // position: "absolute"
-
             }}>
 
             <View
@@ -28,7 +29,7 @@ const Header = ({ goBackHandler, name }) => {
                         height: 26,
                         margin: 6,
                     }}
-                    onPress={goBackHandler}>
+                    onPress={navigation.goBack}>
 
                     <Image
                         source={require('../../assets/icons/previous.png')}
