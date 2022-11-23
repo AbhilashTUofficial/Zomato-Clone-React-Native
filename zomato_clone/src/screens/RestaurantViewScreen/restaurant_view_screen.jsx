@@ -39,7 +39,7 @@ const RestaurantViewScreen = () => {
 
                     <RestaurantDetails restaurant={restaurant} />
 
-                    {restaurant.categories.length !== 0 && <VegNonVeg />}
+                    <VegNonVeg restaurant={restaurant} />
 
                     <CatergoryExpandable restaurant={restaurant} restId={restaurant.id} />
 

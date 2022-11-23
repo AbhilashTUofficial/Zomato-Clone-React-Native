@@ -12,6 +12,8 @@ export const initialData = {
             cost: '150 for one',
             ratting: '4.6',
             faved: false,
+            veg: true,
+            nonveg: true,
             tags: ["recommended", "special", "biryani"],
 
             categories: [
@@ -86,6 +88,8 @@ export const initialData = {
             cost: '150 for one',
             ratting: '3.8',
             faved: false,
+            veg: true,
+            nonveg: true,
             tags: ["recommended", "special"],
 
             categories: [
@@ -171,6 +175,8 @@ export const initialData = {
             distance: '2 km',
             cost: '150 for one',
             ratting: '4.0',
+            veg: true,
+            nonveg: false,
             tags: ["recommended"],
             categories: [
                 {
@@ -203,6 +209,8 @@ export const initialData = {
             distance: '2 km',
             cost: '150 for one',
             ratting: '4.2',
+            veg: true,
+            nonveg: true,
             tags: ["recommended", "biryani"],
             categories: [
                 {
@@ -255,6 +263,8 @@ export const initialData = {
             tags: [],
             categories: [],
             faved: false,
+            veg: true,
+            nonveg: true,
         },
     ],
 

@@ -4,10 +4,15 @@ import { lightGrey, secondary } from '../../constants';
 
 
 //? Veg / NonVeg toggle
-const VegNonVeg = () => {
+const VegNonVeg = ({ restaurant }) => {
 
     const [vegSelected, setVeg] = useState(false);
     const [nonVegSelected, setNonVeg] = useState(false);
+
+    const havVeg = restaurant.veg;
+    const havNonVeg = restaurant.nonveg;
+
+
     const vegIcon = require('../../assets/icons/vegicon.png');
     const cnlIcon = require('../../assets/icons/cancel.png');
     const nonVegIcon = require('../../assets/icons/nonvegicon.png');
@@ -23,41 +28,48 @@ const VegNonVeg = () => {
             */}
 
             {/* VEG */}
-            <TouchableOpacity activeOpacity={0.8}
-                style={[VegNonVegStyle.btn,
-                { width: vegSelected ? 78 : 66, },
-                vegSelected ? VegNonVegStyle.btnSelected : {}]}
-                onPress={() => { setVeg(!vegSelected); }}>
 
-                <Image source={vegIcon} style={VegNonVegStyle.icon} />
+            {
 
-                <Text style={{ color: secondary }}>Veg</Text>
+                havVeg && <TouchableOpacity activeOpacity={0.8}
+                    style={[VegNonVegStyle.btn,
+                    { width: vegSelected ? 78 : 66, },
+                    vegSelected ? VegNonVegStyle.btnSelected : {}]}
+                    onPress={() => { setVeg(!vegSelected); }}>
 
-                {
-                    vegSelected ? <Image source={cnlIcon} style={VegNonVegStyle.cnlIcon} /> : null
-                }
+                    <Image source={vegIcon} style={VegNonVegStyle.icon} />
 
-            </TouchableOpacity>
+                    <Text style={{ color: secondary }}>Veg</Text>
+
+                    {
+                        vegSelected ? <Image source={cnlIcon} style={VegNonVegStyle.cnlIcon} /> : null
+                    }
+
+                </TouchableOpacity>
+            }
 
             {/* NON-VEG */}
-            <TouchableOpacity activeOpacity={0.8}
-                style={[
-                    VegNonVegStyle.btn,
-                    { width: nonVegSelected ? 104 : 92, },
-                    nonVegSelected ? VegNonVegStyle.btnSelected : {}
-                ]}
+            {
 
-                onPress={() => { setNonVeg(!nonVegSelected); }}>
+                havNonVeg && <TouchableOpacity activeOpacity={0.8}
+                    style={[
+                        VegNonVegStyle.btn,
+                        { width: nonVegSelected ? 104 : 92, },
+                        nonVegSelected ? VegNonVegStyle.btnSelected : {}
+                    ]}
 
-                <Image source={nonVegIcon} style={VegNonVegStyle.icon} />
+                    onPress={() => { setNonVeg(!nonVegSelected); }}>
 
-                <Text style={{ color: secondary }}>Non-veg</Text>
+                    <Image source={nonVegIcon} style={VegNonVegStyle.icon} />
 
-                {
-                    nonVegSelected ? <Image source={cnlIcon} style={VegNonVegStyle.cnlIcon} /> : null
-                }
+                    <Text style={{ color: secondary }}>Non-veg</Text>
 
-            </TouchableOpacity>
+                    {
+                        nonVegSelected ? <Image source={cnlIcon} style={VegNonVegStyle.cnlIcon} /> : null
+                    }
+
+                </TouchableOpacity>
+            }
 
         </View>
     );

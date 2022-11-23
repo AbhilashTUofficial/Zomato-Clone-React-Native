@@ -2,50 +2,73 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
-import TabController from './src/screens/tab_controller';
-import RestaurantViewScreen from './src/screens/RestaurantViewScreen/restaurant_view_screen';
-import AuthScreen from './src/screens/AuthScreen/auth_screen';
-import OTPVerifyScreen from './src/screens/OtpVerifyScreen/otp_verify_screen';
-import { Provider } from 'react-redux';
-import { store } from './src/redux/store';
-// import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from './src/screens/splash_screen';
+import AuthController from './src/routes/auth_controller';
+import ScreenController from './src/routes/screen_controller';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  return (
 
-    <Provider store={store}>
+  const delay = ms => new Promise(res => setTimeout(res, ms));
 
-      {/* StatusBar translucent make it, that the UI goes under status bar */}
-      <StatusBar translucent backgroundColor="transparent" />
+  React.useEffect(() => {
+    setTimeout(checkConnection, 1000);
+  }, []);
+
+  const [connect, setConnect] = React.useState(null);
+
+  const checkConnection = async () => {
+    try {
+      await delay(1000);
+      setConnect(false);
+    } catch (err) {
+      console.error('error', err);
+    }
+  };
+
+  if (connect === null) {
+    return (<SplashScreen />);
+  } else if (connect === false) {
+    return (
+      <>
+
+        <NavigationContainer>
+          <StatusBar translucent backgroundColor="transparent" />
+
+          <Stack.Navigator screenOptions={{
+            headerShown: false, animation: 'slide_from_right',
+            animationDuration: 20,
+          }}>
+
+            <Stack.Screen name='auth' component={AuthController} />
+
+          </Stack.Navigator>
+
+        </NavigationContainer>
+      </>
+
+    );
+  } else {
+
+    return (
 
       <NavigationContainer>
+        <StatusBar translucent backgroundColor="transparent" />
+
 
         <Stack.Navigator screenOptions={{
           headerShown: false, animation: 'slide_from_right',
           animationDuration: 20,
         }}>
 
-          {/* Screens */
-            //TODO: Need to add splash screen in here
-          }
-
-          <Stack.Screen name='authscreen' component={AuthScreen} />
-
-          <Stack.Screen name='otpverification' component={OTPVerifyScreen} />
-
-          <Stack.Screen name='tabcontroller' component={TabController} />
-
-          <Stack.Screen name='restaurantscreen' component={RestaurantViewScreen} />
+          <Stack.Screen name='screens' component={ScreenController} />
 
         </Stack.Navigator>
 
       </NavigationContainer>
-
-    </Provider>
-
-  );
+    );
+  }
 }
 
 export default App;

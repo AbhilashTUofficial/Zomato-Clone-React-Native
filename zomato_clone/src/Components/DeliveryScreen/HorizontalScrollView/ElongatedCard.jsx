@@ -125,9 +125,11 @@ const ElongatedCardStyles = StyleSheet.create({
         marginHorizontal: 12,
         marginVertical: 6,
         borderRadius: 18,
-        backgroundColor: "white",
-        elevation: 4,
         borderRadius: 12,
+        backgroundColor: "white",
+        // android code
+        elevation: 4,
+        // ios code
         shadowColor: secondary,
         shadowOffset: { height: 3, width: 3 },
         shadowOpacity: 1,
