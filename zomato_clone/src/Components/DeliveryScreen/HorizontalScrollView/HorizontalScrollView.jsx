@@ -31,9 +31,7 @@ const HorizontalScrollView = () => {
                 width: "100%",
                 paddingVertical: 6
             }}>
-
             <Heading label={"Recommended for you"} />
-
 
             <FlatList
                 horizontal
@@ -44,6 +42,8 @@ const HorizontalScrollView = () => {
                         restId={itemData.item.id}
                     />);
                 }} />
+
+
 
 
 

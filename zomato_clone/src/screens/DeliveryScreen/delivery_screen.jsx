@@ -1,5 +1,5 @@
 import { RefreshControl, ScrollView, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Wrapper from '../../Components/Common/Wrapper';
 import OfferBanner from '../../Components/DeliveryScreen/Banners/OfferBanner';
 import Heading from '../../Components/DeliveryScreen/Common/Heading';
@@ -10,14 +10,21 @@ import { commonStyles } from '../common_styles';
 import HorizontalScrollView from '../../Components/DeliveryScreen/HorizontalScrollView/HorizontalScrollView';
 import Header from '../../Components/DeliveryScreen/Header/Header';
 import StickyHeader from '../../Components/DeliveryScreen/Header/StickyHeader';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DeliveryScreen = () => {
+
+
     const [refreshing, setRefreshing] = useState(false);
+
+
+
 
     return (
         <Wrapper>
 
             <View style={commonStyles.container}>
+
 
                 <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}
                     refreshControl={<RefreshControl refreshing={refreshing} />}>
@@ -45,6 +52,8 @@ const DeliveryScreen = () => {
                     <SafeArea />
 
                 </ScrollView>
+
+
 
             </View>
 

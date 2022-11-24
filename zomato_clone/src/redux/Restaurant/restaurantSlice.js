@@ -1,9 +1,31 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {initialData} from '../../model/ResturantsList';
+import {updateData} from '../../util/http';
+
+const getData = () => {
+  // updateData(state);
+  console.log('getdata called');
+  return initialData;
+};
 
 const restaurantSlice = createSlice({
   name: 'restaurantReducer',
   initialState: initialData,
+
+  // {
+  //   Restaurants: [],
+  //   currentRest: {
+  //     id: 0,
+  //   },
+  //   cart: {
+  //     metaData: {
+  //       storeName: null,
+  //       itemCount: null,
+  //       totalPrice: null,
+  //     },
+  //     items: null,
+  //   },
+  // },
   reducers: {
     likeRestaurant: (state, action) => {
       var currentState = state.Restaurants.find(
@@ -91,6 +113,7 @@ export const {
   likeItem,
   addItem,
   removeItem,
+  fetchData,
 } = restaurantSlice.actions;
 
 export default restaurantSlice.reducer;
