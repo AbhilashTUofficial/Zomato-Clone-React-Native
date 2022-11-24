@@ -12,11 +12,9 @@ const Wrapper = ({ children }) => {
                     height: "100%",
                     width: "100%",
                 }}>
+                {children}
             </View>
-            <View
-                style={{
-                    position: 'absolute',
-                }}>{children}</View>
+
         </View>
     );
 };

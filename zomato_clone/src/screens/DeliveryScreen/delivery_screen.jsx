@@ -1,64 +1,32 @@
-import { RefreshControl, ScrollView, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import Wrapper from '../../Components/Common/Wrapper';
-import OfferBanner from '../../Components/DeliveryScreen/Banners/OfferBanner';
-import Heading from '../../Components/DeliveryScreen/Common/Heading';
-import FoodTypesScrollView from '../../Components/DeliveryScreen/FoodTypes/FoodTypesScrollView';
-import RestaurantsScrollView from '../../Components/DeliveryScreen/VerticalScrollView/RestaurantsScrollView';
-import SafeArea from '../../Components/DeliveryScreen/Common/SafeArea';
-import { commonStyles } from '../common_styles';
-import HorizontalScrollView from '../../Components/DeliveryScreen/HorizontalScrollView/HorizontalScrollView';
-import Header from '../../Components/DeliveryScreen/Header/Header';
-import StickyHeader from '../../Components/DeliveryScreen/Header/StickyHeader';
-import { useDispatch, useSelector } from 'react-redux';
+import { View } from 'react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
+import ConnectedScreen from '../../Components/DeliveryScreen/DeliveryViews/ConnectedScreen';
+import NetworkErrorScreen from '../../Components/DeliveryScreen/DeliveryViews/NetworkErrorScreen';
+import LoadingScreen from '../../Components/DeliveryScreen/DeliveryViews/LoadingScreen';
 
 const DeliveryScreen = () => {
 
+    const netInfo = useNetInfo();
 
-    const [refreshing, setRefreshing] = useState(false);
+    // TODO: Need a way to make it dynamic.
+    const network = netInfo.isConnected;
 
+    switch (network) {
+        case false:
+            return (
+                <NetworkErrorScreen />
+            );
+        case true:
+            return (
+                <ConnectedScreen />
+            );
+        case null:
+            return (<LoadingScreen />);
+        default:
+            break;
 
+    }
 
-
-    return (
-        <Wrapper>
-
-            <View style={commonStyles.container}>
-
-
-                <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false}
-                    refreshControl={<RefreshControl refreshing={refreshing} />}>
-
-                    <Header />
-
-                    <StickyHeader />
-
-                    <OfferBanner source={require("../../assets/img/foodbanner1.jpg")} />
-
-                    <Heading label={"Check this out!"} />
-
-                    <OfferBanner source={require("../../assets/img/foodbanner2.jpg")} />
-
-                    <Heading label={"Eat what makes you happy"} />
-
-                    <FoodTypesScrollView />
-
-                    <HorizontalScrollView />
-
-                    <Heading label={"All restaurants around you"} />
-
-                    <RestaurantsScrollView />
-
-                    <SafeArea />
-
-                </ScrollView>
-
-
-
-            </View>
-
-        </Wrapper>
-    );
 };
 
 

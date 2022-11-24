@@ -8,7 +8,7 @@ import RattingTag from '../../Common/RattingTag';
 const favIcon = require('../../../assets/icons/heart_active.png');
 const notFavIcon = require('../../../assets/icons/heart_inactive.png');
 
-const EmptyRestCard = () => {
+const NotFoundRestCard = () => {
 
     const img = require("../../../assets/food_items/nofood.png");
     const storeName = "Come back later";
@@ -45,7 +45,7 @@ const EmptyRestCard = () => {
         </TouchableOpacity>
     );
 };
-export default EmptyRestCard;
+export default NotFoundRestCard;
 
 //? Styles
 

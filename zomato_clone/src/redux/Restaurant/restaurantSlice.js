@@ -11,9 +11,8 @@ const getData = () => {
 const restaurantSlice = createSlice({
   name: 'restaurantReducer',
   initialState: initialData,
-
   // {
-  //   Restaurants: [],
+  //   Restaurants: null,
   //   currentRest: {
   //     id: 0,
   //   },
@@ -65,7 +64,7 @@ const restaurantSlice = createSlice({
       );
       // Update the value
       currentItem.onCart = currentItem.onCart + 1;
-      // // Update cart items
+      // Update cart items
       // var cart = state.cart;
       // var items = cart.items;
       // if (cart.items === null) {
