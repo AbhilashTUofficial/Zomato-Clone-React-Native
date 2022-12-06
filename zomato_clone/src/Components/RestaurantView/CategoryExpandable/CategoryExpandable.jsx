@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-import { secondary } from '../../constants';
+import { secondary } from '../../../constants';
 import ExpandableView from './ExpandableView';
 
 //? CatergoryExpandable shows the items
@@ -9,8 +9,8 @@ import ExpandableView from './ExpandableView';
 
 const CatergoryExpandable = ({ restaurant, restId }) => {
 
-    const dropdownIcon1 = require('../../assets/icons/dropdown3.png');
-    const dropdownIcon2 = require('../../assets/icons/dropdown3.1.png');
+    const dropdownIcon1 = require('../../../assets/icons/dropdown3.png');
+    const dropdownIcon2 = require('../../../assets/icons/dropdown3.1.png');
 
     var categories = restaurant.categories;
 

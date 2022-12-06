@@ -1,15 +1,13 @@
-import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { Dimensions, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import React from 'react';
 import Wrapper from '../../Components/Common/Wrapper';
-import { primary, secondary } from '../../constants';
 import RestaurantDetails from '../../Components/RestaurantView/RestaurantDetails';
 import Header from '../../Components/RestaurantView/RestaurantHeader';
 import VegNonVeg from '../../Components/RestaurantView/VegNonVegTag';
-import CatergoryExpandable from '../../Components/RestaurantView/CategoryExpandable';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import CatergoryExpandable from '../../Components/RestaurantView/CategoryExpandable/CategoryExpandable';
 import BrouseMenu from '../../Components/RestaurantView/BrouseMenu';
 import { useSelector } from 'react-redux';
-
+import HealthGuide from '../../Components/RestaurantView/HealthGuide';
 
 //? Restaurant Screen
 
@@ -19,7 +17,6 @@ const RestaurantViewScreen = () => {
 
     const currentId = data.currentRest.id;
     const restaurant = data.Restaurants.find((rest) => rest.id === currentId);
-
     const restaurantName = restaurant.storeName;
 
 
@@ -29,7 +26,7 @@ const RestaurantViewScreen = () => {
 
             <StatusBar translucent backgroundColor="transparent" />
 
-            <View style={RestViewScrStyle.cont}>
+            <View style={restViewScrStyle.cont}>
 
                 <ScrollView stickyHeaderIndices={[0]}
 
@@ -46,7 +43,7 @@ const RestaurantViewScreen = () => {
                     <HealthGuide />
 
                 </ScrollView>
-                <View style={RestViewScrStyle.bottomPopCont}>
+                <View style={restViewScrStyle.bottomPopCont}>
                     <BrouseMenu restaurant={restaurant} />
                 </View>
 
@@ -58,43 +55,7 @@ const RestaurantViewScreen = () => {
 
 export default RestaurantViewScreen;
 
-
-
-const HealthGuide = () => {
-
-    const contents = [
-        "Menu items, nutritional information and prices are set directly by the restaurant.",
-        "Nutritional information values displayed are indicative, per serving and may vary depending on the ingreding on the ingredients, portion size and customizations.",
-        "An average active adult requires 2,00 kcal energy per day, however, calorie needs may vary."
-    ];
-
-    return (
-        <View style={RestViewScrStyle.hgCont}>
-
-            {
-                contents.map((text, i) => {
-                    return (
-                        <View key={i}
-                            style={RestViewScrStyle.row}>
-
-                            <Text style={{ fontSize: 28 }}>• </Text>
-
-                            <Text style={{ fontSize: 12 }}>{text}</Text>
-
-                        </View>
-                    );
-                })
-            }
-
-            <TouchableOpacity>
-                <Text style={RestViewScrStyle.link}>Report an issue with the menu</Text>
-            </TouchableOpacity>
-
-        </View>
-    );
-};
-
-const RestViewScrStyle = StyleSheet.create({
+const restViewScrStyle = StyleSheet.create({
     cont: {
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height,
@@ -102,23 +63,7 @@ const RestViewScrStyle = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: "#F6F5FA",
     },
-    hgCont: {
-        flex: 1,
-        backgroundColor: "#F6F5FA",
-        height: 400,
-    },
-    link: {
-        fontSize: 12,
-        color: primary,
-        paddingHorizontal: 12,
-        marginTop: 24
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: "center",
-        paddingHorizontal: 12,
-        marginTop: 24
-    },
+
     bottomPopCont: {
         bottom: 16,
         alignItems: 'center',

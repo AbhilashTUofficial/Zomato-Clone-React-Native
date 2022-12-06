@@ -1,8 +1,8 @@
-import { View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import ConnectedScreen from '../../Components/DeliveryScreen/DeliveryViews/ConnectedScreen';
 import NetworkErrorScreen from '../../Components/DeliveryScreen/DeliveryViews/NetworkErrorScreen';
 import LoadingScreen from '../../Components/DeliveryScreen/DeliveryViews/LoadingScreen';
+import PopupModal from '../../Components/RestaurantView/PopupModal/PopupModal';
 
 const DeliveryScreen = () => {
 
@@ -19,6 +19,7 @@ const DeliveryScreen = () => {
         case true:
             return (
                 <ConnectedScreen />
+                // <PopupModal/>
             );
         case null:
             return (<LoadingScreen />);
